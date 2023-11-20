@@ -44,6 +44,14 @@ function setup() {
     ~/repos/dotfiles/bin/buildsuckless
 
     # touchpad settings
+    sudo printf "Section "InputClass"
+    Identifier "touchpad"
+    Driver "libinput"
+    MatchIsTouchpad "on"
+    Option "Tapping" "on"
+    Option "NaturalScrolling" "on"
+    Option "ClickMethod" "clickfinger"
+    EndSection" > /etc/X11/xorg.conf.d/30-touchpad.conf
 
     # group settings
 }
@@ -57,6 +65,7 @@ function packageInstall() {
         "xorg-xrandr"
         "xorg-setxkbmap"
         "xorg-xset"
+        "libpulse"
 
         "neovim"
         "clang"

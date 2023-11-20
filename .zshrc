@@ -112,4 +112,3 @@ fi
 # for libreoffice debugging.
 export SAL_NO_MOUSEGRABS=T
 
-

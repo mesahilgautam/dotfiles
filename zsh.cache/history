@@ -1,0 +1,424 @@
+ls
+clear
+ls
+clear
+ls
+clear
+cd /etc/X11/xorg.conf.d
+ls
+cd
+cd do
+ls
+cd dotfiles
+ls
+nvim
+nvim 
+nvim 
+nvim
+nmtui
+ls
+clear
+ls
+ll
+    sudo printf "Section "InputClass"\
+    Identifier "touchpad"\
+    Driver "libinput"\
+    MatchIsTouchpad "on"\
+    Option "Tapping" "on"\
+    Option "NaturalScrolling" "on"\
+    Option "ClickMethod" "clickfinger"\
+    EndSection" > /etc/X11/xorg.conf.d/30-touchpad.conf\
+
+sudo printf "Section "InputClass"\
+    Identifier "touchpad"\
+    Driver "libinput"\
+    MatchIsTouchpad "on"\
+    Option "Tapping" "on"\
+    Option "NaturalScrolling" "on"\
+    Option "ClickMethod" "clickfinger"\
+    EndSection" > /etc/X11/xorg.conf.d/30-touchpad.conf\
+
+cd /etc/X11/xorg.conf.d
+ls
+ls
+clear
+sudo su
+nmtui
+tmux
+tmux
+yay -S unzip
+cd dotfiles
+ls
+ssh-keygen
+nmtui
+cd dotfiles
+ls
+nvim install.sh
+ls
+clear
+nvim
+cd
+cd .ssh
+ls
+nvim id_ed25519.pub
+ qclear
+clear
+git config --global url.git@github.com:.insteadOf https://github.com/
+ls
+cd
+ls
+cd dotfiles
+stat
+nvim
+ls
+nvim
+ls
+ls
+nvim
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k\
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc\
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k\
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc\
+
+nvim
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k\
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc\
+
+ls
+ls
+cd files
+ls
+nvim
+rm -rf files
+clear
+cd
+ls
+rm -rf files
+ls
+cd dotfiles
+stat
+yay -S ripgrep
+ls
+ls
+mkdir files
+cd files
+echo "# files" >> README.md\
+  git init\
+  git add README.md\
+  git commit -m "first commit"\
+  git branch -M main\
+  git remote add origin git@github.com:mesahilgautam/files.git\
+  git push -u origin main
+git config --global user.name Sahil Gautam
+git config --global user.email me.sahilgautam@gmail.com
+clear
+echo "# files" >> README.md\
+  git init\
+  git add README.md\
+  git commit -m "first commit"\
+  git branch -M main\
+  git remote add origin git@github.com:mesahilgautam/files.git\
+  git push -u origin main
+ls
+nvim
+nvim
+ls
+ls
+ls
+cd ..
+ls
+git clone git@github.com:mesahilgautam/dotfiles.git config
+ls
+cd config
+ls
+nvim
+ls
+nvim
+stat
+git add .
+git commit -m "completing it"
+git push
+cd ../dotfiles
+ls
+git pull
+clear
+nvim
+cd ../files
+ls
+nvim
+ls
+nvm
+nvim
+cd
+clear
+cd .co
+cd
+cd .config
+ls
+rm -rf BraveSoftware
+ls
+sudo mount /dev/sda /mnt
+cd /mnt
+ls
+cd new
+ls
+cd personal
+ls
+cp -r weechat weechatlog ~/repos/files
+ls
+cd files
+ls
+ln -s weechat ~/.config
+ln -s weechatlog ~/.local/share/weechat
+clear
+cd 
+cd .config/
+rm weechat
+cd 
+cd .co
+cd .co
+cd .config
+cd weechat
+ls
+nam
+yay -S man
+yay -S man
+man ln
+qclear
+cd files/weechatlog
+ls
+cd logs/irc/libera
+ls
+nvim
+yay -S firefox
+nmtui
+cd config
+nvim
+clear
+ln -s ~/repos/files/weechat ~/.config/weechat
+ln -s ~/repos/files/weechatlog ~/.local/share/weechat
+clear
+weechat
+exit
+ls
+sudo pacman -S --needed 'base-devel' 'git' 'ccache' 'ant' 'apr' 'beanshell' 'bluez-libs' 'clucene' \\
+                        'coin-or-mp' 'cppunit' 'curl' 'dbus-glib' \\
+                        'desktop-file-utils' 'doxygen' 'flex' 'gcc-libs' \\
+                        'gdb' 'glm' 'gobject-introspection' 'gperf' 'gpgme' \\
+                        'graphite' 'gst-plugins-base-libs' 'gtk3' \\
+                        'harfbuzz-icu' 'hicolor-icon-theme' 'hunspell' \\
+                        'hyphen' 'icu' 'java-environment' 'junit' \\
+                        'lcms2' 'libabw' 'libatomic_ops' 'libcdr' 'libcmis' \\
+                        'libe-book' 'libepoxy' 'libepubgen' 'libetonyek' \\
+                        'libexttextcat' 'libfreehand' 'libgl' 'libjpeg' \\
+                        'liblangtag' 'libmspub' 'libmwaw' 'libmythes' \\
+                        'libnumbertext' 'libodfgen' 'liborcus' 'libpagemaker' \\
+                        'libqxp' 'libstaroffice' 'libtommath' 'libvisio' \\
+                        'libwpd' 'libwpg' 'libwps' 'libxinerama' 'libxrandr' \\
+                        'libxslt' 'libzmf' 'lpsolve' 'mariadb-libs' \\
+                        'mdds' 'nasm' 'neon' 'nspr' 'nss' 'pango' \\
+                        'plasma-framework5' 'poppler' 'postgresql-libs' \\
+                        'python' 'qt5-base' 'redland' 'sane' 'serf' 'sh' \\
+                        'shared-mime-info' 'ttf-liberation' 'unixodbc' \\
+                        'unzip' 'xmlsec' 'zip' 'gtk4' 'qt6-base' 'zxing-cpp' \\
+                        'abseil-cpp'
+clear
+ls
+git clone https://gerrit.libreoffice.org/core libreoffice
+weechat
+weechat
+weechat 
+killall weechat
+weechat 
+cd
+weechat
+cd .config
+ls
+cd we
+rm weechat
+cd 
+cd .local/share
+ls
+rm weechat
+clear
+cd p
+clear
+cd files
+ls
+cd weechat
+ls
+cd ..
+ln -s weechat ~/.config/weechat
+nvmi
+nvim
+tmux
+ls
+startx
+clear
+ls
+ls -al
+startx
+cat .xinitrc
+t
+exit
+startx
+clear
+ls
+ping google.com
+yay -S xorg-server
+startx
+cd .local/share/xorg
+ls
+nvim Xorg.0.log.old
+clar
+cd
+clear
+reboot
+clear
+weechat
+clear
+startx
+yay
+clear
+reboot
+clear
+startx
+nvim .config
+ c
+clear
+nvim .xinitrc
+startx
+nvim .xinitrc
+ qclear
+clear
+startx
+clear
+ls
+clear
+cd repos
+ls
+clear
+startx
+cd /etc/X11/xorg.conf.d
+ls
+sudo rm 30-touchpad.conf
+startx
+reboot
+clear
+cd repos/dotfiles
+nvim .xinitrc
+cd repos
+ls
+cd config
+nvim .xinitrc
+nmtui
+clear
+startx
+ls
+iwget
+nmtui
+cd config
+ls
+nvim bin
+clear
+cd
+cd /etc/X11/xorg.conf.d
+ls
+sudo nvim 30-touchpad.conf
+cd config
+ls
+nvim
+clea
+cd /etc/X11/xorg.conf.d
+sudo nvim 30-touchpad.conf
+weechat
+clear
+weechat
+nvim
+clear
+sb-internet
+yay -S wireless_tools
+exit
+yay -S wireless_tools
+yay 
+yay 
+yay -S wireless_tools
+yay -Syu
+sudo rm -R /var/lib/pacman/sync
+sudo -E pacman -Syu
+yay
+yay -S wireless_tools
+cd config
+nvim 
+sat
+stat
+qemuinstall
+clear
+sudo mount /dev/sda /mnt
+ls
+clear
+ls
+cd /mnt
+ls
+cp archlinux.qcow2 ~/repos/media
+sudo cp archlinux.qcow2 ~/repos/media
+ls
+mkdir media
+killall virt-manager
+sudo virsh net-autostart 
+sudo virsh net-autostart  default
+ls
+cd media
+ls
+clear
+ls
+clear
+cd
+cd repos/config
+ls
+nvim
+cd files
+ls
+pwd
+cd files
+ls
+nvim
+ls
+cd files
+pwd
+git clone https://gerrit.libreoffice.org/core libreoffice
+ls
+clear
+cd libreoffice
+cd ../media
+ls
+mkdir vms
+nvim
+clear
+sat
+ls
+mkdirls
+clear
+mkdir yt-dlp
+ls
+clear
+ls
+cd
+cd repos/dotfiles
+git pull
+cd
+echo $PATH
+cd repos/dotfiles/bin
+ls
+nvim
+stat
+cd config
+ls
+tat
+stat
+git add .
+git commit -m "bookmarks "
+git push
+list
+bin

@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/sahil/archives/pictures/wallpapers/ddd.jpg"
+let background = "#000103"
+let foreground = "#bfbfc0"
+let cursor     = "#bfbfc0"
+
+" Colors
+let color0  = "#000103"
+let color1  = "#06496F"
+let color2  = "#075988"
+let color3  = "#086497"
+let color4  = "#0972AC"
+let color5  = "#077FC4"
+let color6  = "#0C83BB"
+let color7  = "#bfbfc0"
+let color8  = "#3f4042"
+let color9  = "#06496F"
+let color10 = "#075988"
+let color11 = "#086497"
+let color12 = "#0972AC"
+let color13 = "#077FC4"
+let color14 = "#0C83BB"
+let color15 = "#bfbfc0"

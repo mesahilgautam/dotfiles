@@ -1,0 +1,55 @@
+auto-reload yes
+
+# unbind keys
+unbind-key ENTER
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+# vim-keys
+bind-key h quit
+bind-key j down
+bind-key k up
+bind-key l open
+
+# link capabilities
+
+browser "linkhandler %u"
+
+# macros
+# macro b set browser "brave %u"; open-in-browser
+
+
+# Download script
+# a --> download the file.
+# d --> delete the queued download
+macro d set browser "delete"; open-in-browser; set browser "linkhandler %u"
+macro a set browser "download"; open-in-browser; set browser "linkhandler %u"
+# macro o set browser "linkhandler %u"; open-in-browser-and-mark-read; set browser "linkhandler %u"
+
+
+
+
+# highlight all "---.*---" yellow
+# highlight feedlist ".*(0/0))" black
+# highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
+# highlight article "(^Link:.*|^Date:.*)" default default
+# highlight article "https?://[^ ]+" green default
+# highlight article "^(Title):.*$" blue default
+# highlight article "\\[[0-9][0-9]*\\]" magenta default bold
+# highlight article "\\[image\\ [0-9]+\\]" green default bold
+# highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
+# highlight article ":.*\\(link\\)$" cyan default
+# highlight article ":.*\\(image\\)$" blue default
+# highlight article ":.*\\(embedded flash\\)$" magenta default
+
+feed-sort-order none
+
+color info default default reverse
+color listnormal_unread yellow default
+color listfocus blue default reverse bold
+color listfocus_unread blue default reverse bold
+
+text-width 80
+

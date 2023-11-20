@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/archives/pictures/wallpapers/wallpaper.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#030202",
+        "foreground": "#c0bfbf",
+        "cursor": "#c0bfbf"
+    },
+    "colors": {
+        "color0": "#030202",
+        "color1": "#3A685D",
+        "color2": "#4D6E60",
+        "color3": "#518C75",
+        "color4": "#60AD75",
+        "color5": "#A5855D",
+        "color6": "#5EA48F",
+        "color7": "#c0bfbf",
+        "color8": "#424141",
+        "color9": "#3A685D",
+        "color10": "#4D6E60",
+        "color11": "#518C75",
+        "color12": "#60AD75",
+        "color13": "#A5855D",
+        "color14": "#5EA48F",
+        "color15": "#c0bfbf"
+    }
+}

@@ -1,0 +1,21 @@
+set $wallpaper /home/sahil/archives/pictures/wallpapers/ddd.jpg
+
+set $background #000103
+set $foreground #bfbfc0
+
+set $color0 #000103
+set $color1 #06496F
+set $color2 #075988
+set $color3 #086497
+set $color4 #0972AC
+set $color5 #077FC4
+set $color6 #0C83BB
+set $color7 #bfbfc0
+set $color8 #3f4042
+set $color9 #06496F
+set $color10 #075988
+set $color11 #086497
+set $color12 #0972AC
+set $color13 #077FC4
+set $color14 #0C83BB
+set $color15 #bfbfc0

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/nature.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#020301",
+        "foreground": "#bfc0bf",
+        "cursor": "#bfc0bf"
+    },
+    "colors": {
+        "color0": "#020301",
+        "color1": "#946C22",
+        "color2": "#A47D41",
+        "color3": "#B18924",
+        "color4": "#D1A428",
+        "color5": "#D0A934",
+        "color6": "#DBAC50",
+        "color7": "#bfc0bf",
+        "color8": "#414240",
+        "color9": "#946C22",
+        "color10": "#A47D41",
+        "color11": "#B18924",
+        "color12": "#D1A428",
+        "color13": "#D0A934",
+        "color14": "#DBAC50",
+        "color15": "#bfc0bf"
+    }
+}

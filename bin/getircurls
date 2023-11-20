@@ -1,0 +1,34 @@
+#!/bin/bash
+
+dir="/home/sahil/.local/share/weechat/logs/irc/libera/"
+cd "$dir"
+
+# Define an array to store the URLs
+urls=()
+
+# Loop through all the log files in the directory
+for file in *.weechatlog; do
+    # Check if the file name starts with a '#' character
+    if [[ ! "$file" =~ ^# ]]; then
+        continue  # Skip processing files that don't start with '#'
+    fi
+    
+    # Use tail to get the last 10 lines from the file, then grep to find URLs, and awk to extract them
+    # Adjust the regex pattern for URL detection as needed
+    while read -r line; do
+        urls+=($(echo "$line" | grep -oE 'https?://[^[:space:]]+'))
+    done < <(tail -n 10 "$file")
+done
+
+# Use dmenu to create a prompt for selecting URLs
+selected_url=$(printf '%s\n' "${urls[@]}" | dmenu -p "Select a URL:" -l 20 -vi)
+
+# Copy the selected URL to the clipboard using xclip
+if [ -n "$selected_url" ]; then
+    echo -n "$selected_url" | xclip -selection clipboard
+    echo -n "$selected_url" | xclip -selection primary
+    notify-send "URL Copied" "Copied to clipboard: $selected_url"
+    brave "$selected_url"
+else
+    notify-send "No URL Selected" "No URL was selected."
+fi

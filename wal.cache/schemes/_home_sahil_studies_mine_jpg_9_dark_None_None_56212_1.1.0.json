@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/studies/mine.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#050505",
+        "foreground": "#c0c0c0",
+        "cursor": "#c0c0c0"
+    },
+    "colors": {
+        "color0": "#050505",
+        "color1": "#757575",
+        "color2": "#8B7871",
+        "color3": "#98837C",
+        "color4": "#7E8181",
+        "color5": "#828181",
+        "color6": "#A99289",
+        "color7": "#c0c0c0",
+        "color8": "#434343",
+        "color9": "#757575",
+        "color10": "#8B7871",
+        "color11": "#98837C",
+        "color12": "#7E8181",
+        "color13": "#828181",
+        "color14": "#A99289",
+        "color15": "#c0c0c0"
+    }
+}

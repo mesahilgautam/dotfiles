@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/mmmaain.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#020002",
+        "foreground": "#bfbfbf",
+        "cursor": "#bfbfbf"
+    },
+    "colors": {
+        "color0": "#020002",
+        "color1": "#54403D",
+        "color2": "#72532E",
+        "color3": "#3C3342",
+        "color4": "#463A43",
+        "color5": "#514042",
+        "color6": "#61524A",
+        "color7": "#bfbfbf",
+        "color8": "#413f41",
+        "color9": "#54403D",
+        "color10": "#72532E",
+        "color11": "#3C3342",
+        "color12": "#463A43",
+        "color13": "#514042",
+        "color14": "#61524A",
+        "color15": "#bfbfbf"
+    }
+}

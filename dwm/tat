@@ -1,0 +1,27 @@
+* [33m9ca7ae8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m added cppreference mod+z
+* [33m44b2b47[m added shotcut for irc urls (hackaround)
+* [33m67e9869[m removed alt form dwmdual monitor works with mod + <>
+* [33mefff719[m works
+* [33mf863489[m added bookmarking
+* [33mb8c7802[m added bookmarking functinoality using dmenu
+* [33m0fae1af[m added offline videos shotcut
+* [33m34ccf27[m added status on all monitors patch
+* [33m9168f06[m added firefox shotcut
+* [33meb6bfa5[m added floating scratchpad, but the vim keybinding got removed
+* [33m86371ab[m added vim cheetsheet with a keybind
+* [33m2bd2853[m added hide vacant tags patch dwm
+* [33m31035e1[m clean working dwm withpywal integrated
+* [33m4a4dbe7[m working before xrdb
+* [33m48fab5b[m clean
+* [33mdb2f65b[m added backlight notifications
+* [33me3ab88a[m added floating centre patch
+* [33mb98b6bd[m working but the primay monitor is the first one
+* [33m1ce8a1b[m added notitle patch
+* [33mac48169[m clean before title bar experiments
+* [33m58a5afc[m added alpha dwm patch
+* [33m9c54711[m added keybindings
+* [33m391c8f4[m added dwm swallow patch
+* [33m057a3c0[m added fullscreen patch dwm
+* [33mbeaaba0[m added vanity gaps patch; changed mod to super; adjusted some keybindings
+* [33m3805761[m base dwm
+* [33m6fd7858[m Initial commit

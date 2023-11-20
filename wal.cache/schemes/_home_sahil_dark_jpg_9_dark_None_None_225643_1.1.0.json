@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/dark.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#040506",
+        "foreground": "#c0c0c0",
+        "cursor": "#c0c0c0"
+    },
+    "colors": {
+        "color0": "#040506",
+        "color1": "#3E5861",
+        "color2": "#455258",
+        "color3": "#475C63",
+        "color4": "#526971",
+        "color5": "#696A6D",
+        "color6": "#637B83",
+        "color7": "#c0c0c0",
+        "color8": "#424344",
+        "color9": "#3E5861",
+        "color10": "#455258",
+        "color11": "#475C63",
+        "color12": "#526971",
+        "color13": "#696A6D",
+        "color14": "#637B83",
+        "color15": "#c0c0c0"
+    }
+}

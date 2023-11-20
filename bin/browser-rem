@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+# this script is like a history file, that will basically store all
+# the urls that I visit, therefore storing the url and title.
+file="/home/sahil/.config/repos/personal/history.md"
+[ -f "$file" ] && true || touch $file
+
+
+# making it for brave browser only
+lastTitle=""
+while true
+do
+    focused_window_id=$(xdotool getwindowfocus)
+    window_title=$(xprop -id "$focused_window_id" | awk -F '"' '/^WM_NAME/{$2=$2; print $2}')
+    isBrowser=$(echo "$window_title" | grep -E "Firefox|Brave")
+
+    if [ $lastTitle != $window_title ]
+    then
+
+        if [ -n "$isBrowser" ] 
+        then
+            # run the xdotool commands
+            /usr/bin/xdotool key --clearmodifiers ctrl+l key ctrl+c key Escape 
+
+            # since we ran the xdotool commands, there has to be something on the clipboard
+            clipboard=$(xclip -sel clipboard -o)
+
+            echo "- 🛡️ [$window_title]($clipboard)" >>\
+                "/home/$USER/.config/repos/personal/bookmarks.md" && \
+                notify-send -r 123455 -t 800 $bookmarkImage "Bookmarks" "$clipboard\n\n$window_title"
+
+            echo "$clipboard" | xclip -selection clipboard
+            echo "$clipboard" | xclip -selection primary
+        fi
+        lastTitle=$window_title 
+    fi
+    sleep 3;
+
+done

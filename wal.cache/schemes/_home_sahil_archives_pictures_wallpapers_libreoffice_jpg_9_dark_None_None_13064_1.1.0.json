@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/archives/pictures/wallpapers/libreoffice.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#040405",
+        "foreground": "#c0c0c0",
+        "cursor": "#c0c0c0"
+    },
+    "colors": {
+        "color0": "#040405",
+        "color1": "#6C8238",
+        "color2": "#788B46",
+        "color3": "#8EA94A",
+        "color4": "#AACE4F",
+        "color5": "#CAF855",
+        "color6": "#8F8F8F",
+        "color7": "#c0c0c0",
+        "color8": "#424243",
+        "color9": "#6C8238",
+        "color10": "#788B46",
+        "color11": "#8EA94A",
+        "color12": "#AACE4F",
+        "color13": "#CAF855",
+        "color14": "#8F8F8F",
+        "color15": "#c0c0c0"
+    }
+}

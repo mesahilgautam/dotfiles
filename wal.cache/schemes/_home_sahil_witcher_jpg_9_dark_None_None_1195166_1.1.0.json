@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/witcher.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#020404",
+        "foreground": "#bfc0c0",
+        "cursor": "#bfc0c0"
+    },
+    "colors": {
+        "color0": "#020404",
+        "color1": "#A4464E",
+        "color2": "#995A62",
+        "color3": "#838779",
+        "color4": "#3A90A3",
+        "color5": "#569EAD",
+        "color6": "#69B6C8",
+        "color7": "#bfc0c0",
+        "color8": "#414242",
+        "color9": "#A4464E",
+        "color10": "#995A62",
+        "color11": "#838779",
+        "color12": "#3A90A3",
+        "color13": "#569EAD",
+        "color14": "#69B6C8",
+        "color15": "#bfc0c0"
+    }
+}

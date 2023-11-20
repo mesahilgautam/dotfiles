@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd repos/dotfiles
+cd ~/repos/dotfiles
 echo $(pwd)
 
 cd dwm && sudo make clean install && cd ..

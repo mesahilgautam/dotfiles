@@ -27,6 +27,7 @@ function setup() {
 	sudo ln -s ~/repos/dotfiles/yt-dlp ~/.config/yt-dlp
 	sudo ln -s ~/repos/dotfiles/nvim ~/.config/nvim
 	sudo ln -s ~/repos/dotfiles/nvim ~/.config/nvim
+	sudo ln -s ~/repos/dotfiles/fonts /usr/share/fonts/f
 
 	sudo ln -s ~/repos/dotfiles/.xinitrc ~/.xinitrc
 	sudo ln -s ~/repos/dotfiles/.zshrc ~/.zshrc
@@ -40,7 +41,7 @@ function setup() {
     # qemukvm
     #
     sudo usermod -aG video $USER
-
+    ~/repos/dotfiles/bin/buildsuckless
 
     # touchpad settings
 

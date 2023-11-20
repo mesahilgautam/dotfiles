@@ -4,7 +4,7 @@
 
 icondir="/home/$USER/repos/dotfiles/icons"
 downloadImage="$icondir/download-folder.png"
-downloadDirectory="/home/$USER/archives/yt-dlp"
+downloadDirectory="/home/$USER/repos/media/yt-dlp"
 clipboardOutput=$(xclip -o -selection clipboard)
 # clear the clipboard
 # xsel -cb

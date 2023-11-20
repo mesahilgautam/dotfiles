@@ -44,14 +44,16 @@ function setup() {
     ~/repos/dotfiles/bin/buildsuckless
 
     # touchpad settings
-    sudo printf "Section "InputClass"
-    Identifier "touchpad"
-    Driver "libinput"
-    MatchIsTouchpad "on"
-    Option "Tapping" "on"
-    Option "NaturalScrolling" "on"
-    Option "ClickMethod" "clickfinger"
-    EndSection" > /etc/X11/xorg.conf.d/30-touchpad.conf
+# Section "InputClass"
+#         Identifier "libinput touchpad catchall"
+#         MatchIsTouchpad "on"
+#         MatchDevicePath "/dev/input/event*"
+#         Option "Tapping" "on"
+#         Option "ScrollMethod" "twofinger"
+#         Option "HorizontalScrolling" "on"
+#         Option "DisableWhileTyping" "on"
+#         Driver "libinput"
+# EndSection
 
     # group settings
 }
@@ -96,7 +98,8 @@ function packageInstall() {
         "unzip"
         "ripgrep"
         "delta-git"
-        # ""
+        "man"
+        "wireless_tools" # for wifi name
         # ""
         # ""
     )

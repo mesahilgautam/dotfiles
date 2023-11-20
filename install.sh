@@ -92,7 +92,8 @@ function packageInstall() {
 
     for name in ${packages[@]}
     do
-        yay -S $name --noconfirm
+        
+       ![ command -v "$name" ] && yay -S $name --noconfirm
     done
 }
 

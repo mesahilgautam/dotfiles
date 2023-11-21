@@ -314,18 +314,18 @@
 [urgency_low]
     background = "#000103"
     foreground = "#3f4042"
-    timeout = 3
+    timeout = 6
 
 [urgency_normal]
     foreground = "#bfbfc0"
     background = "#0972AC"
-    timeout = 3
+    timeout = 6
 
 [urgency_critical]
     background = "#06496F" 
     foreground = "#bfbfc0"
     frame_color = "#086497"
-    timeout = 3
+    timeout = 6
 
 
 # Every section that isn't one of the above is interpreted as a rules to

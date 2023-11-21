@@ -100,6 +100,17 @@ function packageInstall() {
         "delta-git"
         "man"
         "wireless_tools" # for wifi name
+        "visual-studio-code-bin"
+        "firefox" # for other email
+        "feh"
+        "sxiv"
+        "pavucontrol"
+        "neomutt"
+        "wal" # pywal
+        ""
+        ""
+        # ""
+        # ""
         # ""
         # ""
     )

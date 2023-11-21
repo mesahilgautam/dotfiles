@@ -86,7 +86,7 @@ setxkbmap -option caps:swapescape
 setxkbmap -option ctrl:swap_ralt_rctl  
 
 alias tr="git log --all --oneline --graph --decorate"
-alias cr="cd /home/sahil/.config/repos/"
+alias cr="cd ~/repos/"
 alias msu="sudo make clean install"
 # alias ntodo="nvim /home/sahil/.config/repos/personalVault/files/README.md"
 alias stat="git status"
@@ -97,12 +97,8 @@ alias br="git branch"
 alias ssha='eval $(ssh-agent) && ssh-add'
 # alias todo="nvim ~/.plans.md"
 # alias todo="nvim /home/sahil/.config/repos/personal/README.md"
-alias todo="nvim /home/sahil/.config/repos/personal/present/README.md"
-alias me="nvim /home/sahil/.config/repos/cpp/"
-alias dsa="nvim /home/sahil/.config/repos/cpp/college"
-alias list="nvim /home/$USER/.config/repos/personal/bookmarks.md"
-alias bin="nvim /home/$USER/.config/repos/utils/bin"
-alias sc="nvim /home/$USER/.config/repos/scratchpad"
+alias list="nvim /home/$USER/repos/files/bookmarks.md"
+alias bin="nvim /home/$USER/repos/config/bin"
 
 # function lnvim() {
 #     export NVIM_APPNAME="/home/sahil/.config/KickstartNvim"

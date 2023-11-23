@@ -2111,3 +2111,11 @@ cd ../files/sourcecode
 ls
 nvim
 nvim
+nvim
+ls
+cd nvim
+nvim lua/sahil/core/keymaps.lua
+nvim
+stat
+git add .
+git rebase --continue

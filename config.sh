@@ -144,8 +144,14 @@ command -v yay || installYay
 packageInstall
 setup
 
-# for powerlevel10k
-#git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-#echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-#https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#switching-remote-urls-from-https-to-ssh
 # to change from http to ssh
+#https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#switching-remote-urls-from-https-to-ssh
+
+# ~
+# ├── Downloads         # all downloads or extra files, which are not either media/something i would want long term
+# └── repos
+#     ├── config        # this repo
+#     ├── files         # private git repo
+#     ├── libreoffice   # fresh build
+#     └── media         # will be backed up to hhd, and will be copied from there only
+#

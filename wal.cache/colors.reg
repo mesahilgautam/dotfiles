@@ -1,0 +1,19 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Wal]
+"Colour0"="6,11,10"
+"Colour1"="21,38,49"
+"Colour2"="38,49,57"
+"Colour3"="21,40,79"
+"Colour4"="42,53,72"
+"Colour5"="48,75,96"
+"Colour6"="63,92,149"
+"Colour7"="131,164,204"
+"Colour8"="102,102,102"
+"Colour9"="21,38,49"
+"Colour10"="38,49,57"
+"Colour11"="21,40,79"
+"Colour12"="42,53,72"
+"Colour13"="48,75,96"
+"Colour14"="63,92,149"
+"Colour15"="131,164,204"

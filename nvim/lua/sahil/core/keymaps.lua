@@ -55,6 +55,8 @@ function G_print_current_file_path()
     vim.cmd("!python %")
   elseif file_extension == "lua" then
     vim.cmd("!lua %")
+  elseif file_extension == "sh" then
+    vim.cmd("!sh %")
   else
     print("Unsupported file type")
   end

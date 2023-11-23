@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd("FileType", {
       buffer = args.buf,
       group = cpp_formating_group,
       callback = function()
-        if not string.find(vim.fn.expand("%:p"), "/home/sahil/libreoffice") then
+        if not string.find(vim.fn.expand("%:p"), "/home/sahil/repos/libreoffice/") then
           vim.lsp.buf.format({ async = false, bufnr = args.buf })
         end
       end,

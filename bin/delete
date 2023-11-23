@@ -2,7 +2,7 @@
 
 # --------------------------------------------------------
 
-icondir="/home/$USER/repos/dotfiles/icons"
+icondir="/home/$USER/repos/config/icons"
 deleteImage="$icondir/cancel.png"
 ytdlpInstances="$(pgrep -f yt-dlp)"
 mpvInstances="$(pgrep -f mpv)"

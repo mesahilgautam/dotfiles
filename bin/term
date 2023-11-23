@@ -13,7 +13,7 @@
 clipboard=$(xclip -o -selection clipboard)
 canNotify=$(command -v notify-send)
 
-icondir="/home/$USER/repos/dotfiles/icons/"
+icondir="/home/$USER/repos/config/icons/"
 linkImg="$icondir/link64.png"
 codeImg="$icondir/code64.png"
 

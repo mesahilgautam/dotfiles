@@ -15,34 +15,34 @@ function setup() {
 
     ![ -d "~/repos" ] && break
 
-	sudo ln -s ~/repos/dotfiles/nvim ~/.config/nvim
-	sudo ln -s ~/repos/dotfiles/dunst ~/.config/dunst
-	sudo ln -s ~/repos/dotfiles/gtk-3.0 ~/.config/gtk-3.0
-	sudo ln -s ~/repos/dotfiles/mpv ~/.config/mpv
-	sudo ln -s ~/repos/dotfiles/newsboat ~/.config/newsboat
-	sudo ln -s ~/repos/dotfiles/tmux ~/.config/tmux
-	sudo ln -s ~/repos/dotfiles/wal.config ~/.config/wal
-	sudo ln -s ~/repos/dotfiles/wal.cache ~/.cache/wal
+	sudo ln -s ~/repos/config/nvim ~/.config/nvim
+	sudo ln -s ~/repos/config/dunst ~/.config/dunst
+	sudo ln -s ~/repos/config/gtk-3.0 ~/.config/gtk-3.0
+	sudo ln -s ~/repos/config/mpv ~/.config/mpv
+	sudo ln -s ~/repos/config/newsboat ~/.config/newsboat
+	sudo ln -s ~/repos/config/tmux ~/.config/tmux
+	sudo ln -s ~/repos/config/wal.config ~/.config/wal
+	sudo ln -s ~/repos/config/wal.cache ~/.cache/wal
 
-	sudo ln -s ~/repos/dotfiles/yt-dlp ~/.config/yt-dlp
-	sudo ln -s ~/repos/dotfiles/nvim ~/.config/nvim
-	sudo ln -s ~/repos/dotfiles/nvim ~/.config/nvim
-	sudo ln -s ~/repos/dotfiles/fonts /usr/share/fonts/f
+	sudo ln -s ~/repos/config/yt-dlp ~/.config/yt-dlp
+	sudo ln -s ~/repos/config/nvim ~/.config/nvim
+	sudo ln -s ~/repos/config/nvim ~/.config/nvim
+	sudo ln -s ~/repos/config/fonts /usr/share/fonts/f
 
-	sudo ln -s ~/repos/dotfiles/.xinitrc ~/.xinitrc
-	sudo ln -s ~/repos/dotfiles/.zshrc ~/.zshrc
-	sudo ln -s ~/repos/dotfiles/.zprofile ~/.zprofile
+	sudo ln -s ~/repos/config/.xinitrc ~/.xinitrc
+	sudo ln -s ~/repos/config/.zshrc ~/.zshrc
+	sudo ln -s ~/repos/config/.zprofile ~/.zprofile
     mkdir -p ~/.cache/zsh
     touch ~/.cache/zsh/history
 
-    export PATH="/home/$USER/repos/dotfiles/bin:$PATH"
+    export PATH="/home/$USER/repos/config/bin:$PATH"
 
     # init system calls
     # docker
     # qemukvm
     #
     sudo usermod -aG video $USER
-    ~/repos/dotfiles/bin/buildsuckless
+    ~/repos/config/bin/buildsuckless
 
     # touchpad settings
 # Section "InputClass"
@@ -147,3 +147,5 @@ setup
 # for powerlevel10k
 #git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 #echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+#https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#switching-remote-urls-from-https-to-ssh
+# to change from http to ssh

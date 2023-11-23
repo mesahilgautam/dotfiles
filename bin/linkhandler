@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the path to the YouTube icon
-icondir="/home/$USER/repos/dotfiles/icons/"
+icondir="/home/$USER/repos/config/icons/"
 youtubeIcon="$icondir/youtube64.png"
 # Get the URL from the clipboard
 clipboard="$(xclip -o -selection clipboard)"

@@ -4,7 +4,7 @@
 config_dir="/home/$USER/repos/files/"
 bookmarks_file="${config_dir}bookmarks.md"
 youtube_file="${config_dir}youtube.md"
-icondir="/home/$USER/repos/dotfiles/icons/"
+icondir="/home/$USER/repos/config/icons/"
 
 # Check if the bookmarks directory and files exist
 [ -d "$config_dir" ] && true || mkdir -p $config_dir

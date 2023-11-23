@@ -2,7 +2,7 @@
 
 #-----------------------------------------------------------------------------------
 
-icondir="/home/$USER/repos/dotfiles/icons"
+icondir="/home/$USER/repos/config/icons"
 downloadImage="$icondir/download-folder.png"
 downloadDirectory="/home/$USER/repos/media/yt-dlp"
 clipboardOutput=$(xclip -o -selection clipboard)

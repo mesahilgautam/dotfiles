@@ -1,5 +1,17 @@
 local opt = vim.opt -- for conciseness
 
+--  features for developing good habbits
+vim.keymap.set("", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("", "<down>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
+
+vim.keymap.set("", "<left>", "<nop>", { noremap = true })
+vim.keymap.set("", "<right>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<left>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<right>", "<nop>", { noremap = true })
+
+vim.opt.mouse = ""
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
@@ -45,7 +57,7 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 opt.pumheight = 12
-opt.conceallevel = 1
+opt.conceallevel = 3
 opt.guicursor = "i:block"
 
 opt.hlsearch = true

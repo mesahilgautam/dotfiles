@@ -1,19 +1,17 @@
 #!/bin/bash
 
 function setup() {
-    # change shell
+    change shell
     sudo echo "/usr/bin/zsh" >> /etc/shells
     chsh -s $(which zsh)
     sudo chsh -s $(which zsh)
 
-    # tpm(tmux plugin manager) install for tmux
+    tpm(tmux plugin manager) install for tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-    # setup all symbolic links
+    setup all symbolic links
     mkdir -p ~/.config
     mkdir -p ~/.cache
-
-    ![ -d "~/repos" ] && break
 
 	sudo ln -s ~/repos/config/nvim ~/.config/nvim
 	sudo ln -s ~/repos/config/dunst ~/.config/dunst
@@ -25,8 +23,6 @@ function setup() {
 	sudo ln -s ~/repos/config/wal.cache ~/.cache/wal
 
 	sudo ln -s ~/repos/config/yt-dlp ~/.config/yt-dlp
-	sudo ln -s ~/repos/config/nvim ~/.config/nvim
-	sudo ln -s ~/repos/config/nvim ~/.config/nvim
 	sudo ln -s ~/repos/config/fonts /usr/share/fonts/f
 
 	sudo ln -s ~/repos/config/.xinitrc ~/.xinitrc
@@ -43,6 +39,7 @@ function setup() {
     #
     sudo usermod -aG video $USER
     ~/repos/config/bin/buildsuckless
+    reboot
 
     # touchpad settings
 # Section "InputClass"

@@ -1,45 +1,45 @@
-URxvt*foreground: #83A4CC
-XTerm*foreground: #83A4CC
-URxvt*background: #060B0A
-XTerm*background: #060B0A
-URxvt*cursorColor: #83A4CC
-XTerm*cursorColor: #060B0A
-*color0: #060B0A
-*.color0: #060B0A
-*color1: #152631
-*.color1: #152631
-*color2: #263139
-*.color2: #263139
-*color3: #15284F
-*.color3: #15284F
-*color4: #2A3548
-*.color4: #2A3548
-*color5: #304B60
-*.color5: #304B60
-*color6: #3F5C95
-*.color6: #3F5C95
-*color7: #83A4CC
-*.color7: #83A4CC
+URxvt*foreground: #54A0E0
+XTerm*foreground: #54A0E0
+URxvt*background: #0F0E0C
+XTerm*background: #0F0E0C
+URxvt*cursorColor: #54A0E0
+XTerm*cursorColor: #0F0E0C
+*color0: #0F0E0C
+*.color0: #0F0E0C
+*color1: #16365D
+*.color1: #16365D
+*color2: #194A5E
+*.color2: #194A5E
+*color3: #114B6C
+*.color3: #114B6C
+*color4: #525258
+*.color4: #525258
+*color5: #1F5D93
+*.color5: #1F5D93
+*color6: #2B5AB7
+*.color6: #2B5AB7
+*color7: #54A0E0
+*.color7: #54A0E0
 *color8: #666666
 *.color8: #666666
-*color9: #152631
-*.color9: #152631
-*color10: #263139
-*.color10: #263139
-*color11: #15284F
-*.color11: #15284F
-*color12: #2A3548
-*.color12: #2A3548
-*color13: #304B60
-*.color13: #304B60
-*color14: #3F5C95
-*.color14: #3F5C95
-*color15: #83A4CC
-*.color15: #83A4CC
-*color66: #060B0A
-rofi.color-window: argb:FF060B0A, #060B0A, #263139
-rofi.color-normal: argb:FF060B0A, #83A4CC, #060B0A, #263139, #060B0A
-rofi.color-active: argb:FF060B0A, #83A4CC, #060B0A, #263139, #060B0A
-rofi.color-urgent: argb:FF060B0A, #152631, #060B0A, #152631, #83A4CC
-emacs*background: #060B0A
-emacs*foreground: #83A4CC
+*color9: #16365D
+*.color9: #16365D
+*color10: #194A5E
+*.color10: #194A5E
+*color11: #114B6C
+*.color11: #114B6C
+*color12: #525258
+*.color12: #525258
+*color13: #1F5D93
+*.color13: #1F5D93
+*color14: #2B5AB7
+*.color14: #2B5AB7
+*color15: #54A0E0
+*.color15: #54A0E0
+*color66: #0F0E0C
+rofi.color-window: argb:FF0F0E0C, #0F0E0C, #194A5E
+rofi.color-normal: argb:FF0F0E0C, #54A0E0, #0F0E0C, #194A5E, #0F0E0C
+rofi.color-active: argb:FF0F0E0C, #54A0E0, #0F0E0C, #194A5E, #0F0E0C
+rofi.color-urgent: argb:FF0F0E0C, #16365D, #0F0E0C, #16365D, #54A0E0
+emacs*background: #0F0E0C
+emacs*foreground: #54A0E0

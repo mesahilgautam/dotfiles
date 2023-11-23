@@ -107,6 +107,13 @@ function packageInstall() {
         "pavucontrol"
         "neomutt"
         "wal" # pywal
+        "mpv"
+        "lua"
+        "gcc"
+        "g++"
+        "make"
+        ""
+        ""
         ""
         ""
         # ""

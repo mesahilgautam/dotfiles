@@ -1,4 +1,16 @@
 require("ibl").setup({
+  enabled = true,
+  exclude = {
+    filetypes = {
+      "lspinfo",
+      "packer",
+      "checkhealth",
+      "help",
+      "man",
+      "dashboard",
+      "",
+    },
+  },
   indent = { char = "│" },
   whitespace = {
     -- highlight = highlight,

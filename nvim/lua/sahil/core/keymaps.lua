@@ -37,8 +37,31 @@ keymap.set("n", "<leader>y", '"+y')
 keymap.set("v", "<leader>y", '"+y')
 keymap.set("n", "<leader>Y", '"+Y')
 
--- keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-keymap.set("n", "<leader>x", "<cmd>!lua %<CR>", { silent = true })
+-- Execute different file types on the vim shell
+function G_print_current_file_path()
+  local file_extension = vim.fn.expand("%:e")
+
+  if file_extension == "cpp" then
+    vim.cmd(
+      "!g++ -std=c++20 -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Wshadow -pedantic-errors  % -o exe && ./exe"
+    )
+  elseif file_extension == "c" then
+    vim.cmd("!gcc -Wall -Wextra -Wconversion -Wsign-conversion -Wshadow -pedantic-errors  % -o exe && ./exe")
+  elseif file_extension == "cxx" then
+    vim.cmd(
+      "!g++ -std=c++20 -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Wshadow -pedantic-errors  % -o exe && ./exe"
+    )
+  elseif file_extension == "py" then
+    vim.cmd("!python %")
+  elseif file_extension == "lua" then
+    vim.cmd("!lua %")
+  else
+    print("Unsupported file type")
+  end
+end
+
+-- Bind the function to leader + X
+vim.api.nvim_set_keymap("n", "<leader>x", ":lua G_print_current_file_path()<CR>", { noremap = true, silent = true })
 
 keymap.set(
   "n",

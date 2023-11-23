@@ -32,7 +32,8 @@ function setup() {
 	sudo ln -s ~/repos/dotfiles/.xinitrc ~/.xinitrc
 	sudo ln -s ~/repos/dotfiles/.zshrc ~/.zshrc
 	sudo ln -s ~/repos/dotfiles/.zprofile ~/.zprofile
-    sudo ln -s ~/repos/dotfiles/zsh.cache ~/.cache/zsh
+    mkdir -p ~/.cache/zsh
+    touch ~/.cache/zsh/history
 
     export PATH="/home/$USER/repos/dotfiles/bin:$PATH"
 

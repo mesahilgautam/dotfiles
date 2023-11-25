@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function setup() {
-    change shell
+    # change shell
     sudo echo "/usr/bin/zsh" >> /etc/shells
     chsh -s $(which zsh)
     sudo chsh -s $(which zsh)
@@ -9,7 +9,7 @@ function setup() {
     # tpm(tmux plugin manager) install for tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-    setup all symbolic links
+    # setup all symbolic links
     mkdir -p ~/.config
     mkdir -p ~/.cache/zsh
     touch ~/.cache/zsh/history

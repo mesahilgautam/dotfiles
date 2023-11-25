@@ -1,6 +1,6 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PROMPT='%F{green}[%n%f%F{red}@%f%F{blue}%m]%f %F{green}%f%F{blue}%c%f %F{red}${vcs_info_msg_0_}%f$ '
 
 # History in cache directory:
 HISTSIZE=10000
@@ -108,3 +108,9 @@ fi
 # for libreoffice debugging.
 export SAL_NO_MOUSEGRABS=T
 
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' formats '%b '
+setopt PROMPT_SUBST
+PROMPT='%F{green}[%n%f%F{red}@%f%F{blue}%m]%f %F{green}%f%F{blue}%c%f %F{red}${vcs_info_msg_0_}%f$ '

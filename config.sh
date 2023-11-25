@@ -6,7 +6,7 @@ function setup() {
     chsh -s $(which zsh)
     sudo chsh -s $(which zsh)
 
-    tpm(tmux plugin manager) install for tmux
+    # tpm(tmux plugin manager) install for tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
     setup all symbolic links

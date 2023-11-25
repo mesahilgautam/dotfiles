@@ -18,7 +18,7 @@ static int smartgaps =
 static const int showbar = 1; /* 0 means no bar */
 static const int topbar = 1;  /* 0 means bottom bar */
 static const char *fonts[] = {"JetBrainsMono Nerd Font:size=10"};
-static const char dmenufont[] = "JetBrainsMono Nerd Font:size=12";
+static const char dmenufont[] = "JetBrainsMono Nerd Font:size=10";
 // static const char col_gray1[]       = "#222222";
 // static const char col_gray2[]       = "#444444";
 // static const char col_gray3[]       = "#bbbbbb";
@@ -52,6 +52,9 @@ static const Rule rules[] = {
     {"Firefox", NULL, NULL, 1 << 8, 0, 0, -1, -1},
     {"st-256color", NULL, NULL, 0, 0, 1, 0, -1},
     {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
+    /*These will start from xinitrc */
+    // {"betterbird", NULL, NULL, 1 << 8, 0, 0, 0, -1},
+    // {"Brave-browser", NULL, NULL, 1 << 3, 0, 0, 0, -1},
 };
 
 /* layout(s) */

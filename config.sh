@@ -11,7 +11,8 @@ function setup() {
 
     setup all symbolic links
     mkdir -p ~/.config
-    mkdir -p ~/.cache
+    mkdir -p ~/.cache/zsh
+    touch ~/.cache/zsh/history
 
 	sudo ln -s ~/repos/config/nvim ~/.config/nvim
 	sudo ln -s ~/repos/config/dunst ~/.config/dunst
@@ -28,8 +29,6 @@ function setup() {
 	sudo ln -s ~/repos/config/.xinitrc ~/.xinitrc
 	sudo ln -s ~/repos/config/.zshrc ~/.zshrc
 	sudo ln -s ~/repos/config/.zprofile ~/.zprofile
-    mkdir -p ~/.cache/zsh
-    touch ~/.cache/zsh/history
 
     export PATH="/home/$USER/repos/config/bin:$PATH"
 
@@ -110,7 +109,7 @@ function packageInstall() {
         "gcc"
         "g++"
         "make"
-        ""
+        "fzf"
         ""
         ""
         ""

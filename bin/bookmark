@@ -3,13 +3,11 @@
 # Directory for storing bookmark files
 config_dir="/home/$USER/repos/files/"
 bookmarks_file="${config_dir}bookmarks.md"
-youtube_file="${config_dir}youtube.md"
 icondir="/home/$USER/repos/config/icons/"
 
 # Check if the bookmarks directory and files exist
 [ -d "$config_dir" ] && true || mkdir -p $config_dir
 [ -f "$bookmarks_file" ] && true || touch "$bookmarks_file"
-[ -f "$youtube_file" ] && true || touch "$youtube_file"
 
 bookmarkImage="-i $icondir/bookmark64.png"
 
@@ -40,16 +38,8 @@ if [ -n "$browser_name" ]; then
     # Since we ran the xdotool commands, there has to be something on the clipboard
     clipboard=$(xclip -sel clipboard -o)
 
-    # Check if the URL or title contains "youtube" (case-insensitive)
-    if echo "$clipboard" | grep -qi "youtube" || echo "$window_title" | grep -qi "youtube"; then
-        # Append the bookmark to the youtube file with window title
-        echo "- 🛡️ [$window_title]($clipboard)" >> "$youtube_file" && \
-            notify-send -r 123456 -t 800 $bookmarkImage "YouTube Bookmarks" "$window_title\n\n$clipboard"
-    else
-        # Append the bookmark to the bookmarks file with window title
-        echo "- 🛡️ [$window_title]($clipboard)" >> "$bookmarks_file" && \
-            notify-send -r 123455 -t 800 $bookmarkImage "Bookmarks" "$window_title\n\n$clipboard"
-    fi
+    echo "- 🛡️ [$window_title]($clipboard)" >> "$bookmarks_file" && \
+        notify-send -r 123455 -t 800 $bookmarkImage "Bookmarks" "$window_title\n\n$clipboard"
 
     # Copy to primary and clipboard selections
     echo "$clipboard" | xclip -selection clipboard

@@ -50,6 +50,8 @@ require("catppuccin").setup({
     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
   },
 })
-
--- setup must be called before loading
+--
+-- -- setup must be called before loading
 vim.cmd.colorscheme("catppuccin")
+-- vim.o.background = "dark" -- or "light" for light mode
+-- vim.cmd([[colorscheme gruvbox]])

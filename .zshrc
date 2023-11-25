@@ -81,28 +81,24 @@ alias ls='ls --color=auto'
 alias ll='ls -al --color=auto'
 alias grep='grep --color=auto'
 
+# keyboard settings
 xset r rate 300 50
 setxkbmap -option caps:swapescape
 setxkbmap -option ctrl:swap_ralt_rctl  
 
-alias tr="git log --all --oneline --graph --decorate"
 alias cr="cd ~/repos/"
 alias msu="sudo make clean install"
-# alias ntodo="nvim /home/sahil/.config/repos/personalVault/files/README.md"
-alias stat="git status"
-alias commit="git add .; git commit -m $1"
 alias hss="hugo server --noHTTPCache"
-# alias dict="nvim /home/sahil/.config/repos/personalVault/files/dict.md"
-alias br="git branch"
 alias ssha='eval $(ssh-agent) && ssh-add'
-# alias todo="nvim ~/.plans.md"
-# alias todo="nvim /home/sahil/.config/repos/personal/README.md"
 alias list="nvim /home/$USER/repos/files/bookmarks.md"
 alias bin="nvim /home/$USER/repos/config/bin"
 
-# function lnvim() {
-#     export NVIM_APPNAME="/home/sahil/.config/KickstartNvim"
-# }
+# Ligreoffice and git specific aliases
+alias tr="git log --all --oneline --graph --decorate"
+alias stat="git status"
+alias commit="git add .; git commit -m $1"
+alias br="git branch"
+alias gca="git commit --amend"
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'

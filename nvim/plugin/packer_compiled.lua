@@ -160,7 +160,7 @@ _G.packer_plugins = {
     url = "https://github.com/williamboman/mason.nvim"
   },
   neorg = {
-    config = { "\27LJ\2\n¦\2\0\0\b\0\20\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\18\0005\3\3\0004\4\0\0=\4\4\0035\4\n\0005\5\b\0005\6\6\0005\a\5\0=\a\a\6=\6\t\5=\5\v\4=\4\f\0035\4\16\0005\5\14\0005\6\r\0=\6\15\5=\5\v\4=\4\17\3=\3\19\2B\0\2\1K\0\1\0\tload\1\0\0\16core.dirman\1\0\0\15workspaces\1\0\0\1\0\1\nnotes\"/home/sahil/repos/files/notes\19core.concealer\vconfig\1\0\0\nicons\1\0\0\15code_block\1\0\0\1\0\2\fconceal\2\17content_only\2\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
+    config = { "\27LJ\2\nÎ\2\0\0\b\0\20\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\18\0005\3\3\0004\4\0\0=\4\4\0035\4\n\0005\5\b\0005\6\6\0005\a\5\0=\a\a\6=\6\t\5=\5\v\4=\4\f\0035\4\16\0005\5\14\0005\6\r\0=\6\15\5=\5\v\4=\4\17\3=\3\19\2B\0\2\1K\0\1\0\tload\1\0\0\16core.dirman\1\0\0\15workspaces\1\0\0\1\0\2\nnotes\"/home/sahil/repos/files/notes\fjournal$/home/sahil/repos/files/journal\19core.concealer\vconfig\1\0\0\nicons\1\0\0\15code_block\1\0\0\1\0\2\fconceal\2\17content_only\2\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
     loaded = true,
     path = "/home/sahil/.local/share/nvim/site/pack/packer/start/neorg",
     url = "https://github.com/nvim-neorg/neorg"
@@ -297,7 +297,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: neorg
 time([[Config for neorg]], true)
-try_loadstring("\27LJ\2\n¦\2\0\0\b\0\20\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\18\0005\3\3\0004\4\0\0=\4\4\0035\4\n\0005\5\b\0005\6\6\0005\a\5\0=\a\a\6=\6\t\5=\5\v\4=\4\f\0035\4\16\0005\5\14\0005\6\r\0=\6\15\5=\5\v\4=\4\17\3=\3\19\2B\0\2\1K\0\1\0\tload\1\0\0\16core.dirman\1\0\0\15workspaces\1\0\0\1\0\1\nnotes\"/home/sahil/repos/files/notes\19core.concealer\vconfig\1\0\0\nicons\1\0\0\15code_block\1\0\0\1\0\2\fconceal\2\17content_only\2\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
+try_loadstring("\27LJ\2\nÎ\2\0\0\b\0\20\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\18\0005\3\3\0004\4\0\0=\4\4\0035\4\n\0005\5\b\0005\6\6\0005\a\5\0=\a\a\6=\6\t\5=\5\v\4=\4\f\0035\4\16\0005\5\14\0005\6\r\0=\6\15\5=\5\v\4=\4\17\3=\3\19\2B\0\2\1K\0\1\0\tload\1\0\0\16core.dirman\1\0\0\15workspaces\1\0\0\1\0\2\nnotes\"/home/sahil/repos/files/notes\fjournal$/home/sahil/repos/files/journal\19core.concealer\vconfig\1\0\0\nicons\1\0\0\15code_block\1\0\0\1\0\2\fconceal\2\17content_only\2\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
 time([[Config for neorg]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)

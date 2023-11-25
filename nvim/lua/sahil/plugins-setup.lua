@@ -78,6 +78,7 @@ return packer.startup(function(use)
             config = {
               workspaces = {
                 notes = "/home/sahil/repos/files/notes",
+                journal = "/home/sahil/repos/files/journal",
               },
             },
           },

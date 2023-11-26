@@ -107,7 +107,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.92;
+float alpha = 0.80;
 /* Terminal colors (16 first used in escape sequence) */
 // static const char *colorname[] = {
 //     /* 8 normal colors */
@@ -231,7 +231,7 @@ static MouseShortcut mshortcuts[] = {
 #define ALTSHIFT (Mod1Mask | ShiftMask)
 #define TERMMOD (ControlMask | ShiftMask)
 
-static char *copyurlcmd[] = {"/bin/sh", "-c", "st-urlhandler -c",
+static char *copyurlcmd[] = {"/bin/sh", "-c", "st-urlhandler -o",
                              "externalpipe", NULL};
 
 // static char *copyoutput[] = {"/bin/sh", "-c", "st-copyout", "externalpipe",

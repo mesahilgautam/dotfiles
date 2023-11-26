@@ -100,3 +100,26 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+
+-- Create an autocmd group to disable LSP diagnostics in Python files
+local lsp_diagnostic_disable = vim.api.nvim_create_augroup("DisableLspDiagnosticsInPythonFiles", { clear = true })
+
+-- Create an autocmd for FileType
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  group = lsp_diagnostic_disable,
+  callback = function()
+    -- Create an autocmd for BufEnter within the FileType autocmd
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = "*",
+      group = lsp_diagnostic_disable,
+      callback = function()
+        -- Disable LSP diagnostics
+        vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "" })
+        vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "" })
+        vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", texthl = "" })
+        vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", texthl = "" })
+      end,
+    })
+  end,
+})

@@ -35,9 +35,11 @@ return packer.startup(function(use)
   use("lukas-reineke/indent-blankline.nvim")
   use("ThePrimeagen/harpoon")
   use("akinsho/toggleterm.nvim")
+  use("rebelot/kanagawa.nvim")
   use("catppuccin/nvim")
   -- use({ "ellisonleao/gruvbox.nvim" })
   use("norcalli/nvim-colorizer.lua")
+
   use("Vimjas/vim-python-pep8-indent")
   -- install without yarn or npm
   -- markdown preview
@@ -83,6 +85,8 @@ return packer.startup(function(use)
             },
           },
         },
+
+        ["external.jupyter"] = {},
       })
     end,
     run = ":Neorg sync-parsers",

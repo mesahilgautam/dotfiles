@@ -1,3 +1,4 @@
+gpg-agent --daemon &
 dispscript
 dunst &
 flameshot &

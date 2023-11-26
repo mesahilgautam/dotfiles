@@ -126,7 +126,6 @@ static const char *getbookmark[] = {"getbookmark", NULL};
 
 static const char *bravecmd[] = {"brave", NULL};
 static const char *firefoxcmd[] = {"firefox", NULL};
-static const char *newsboatcmd[] = {"stnewsboat", NULL};
 
 static const char *flameshotcmd[] = {"flameshot", "gui", NULL};
 static const char *emacsarchive[] = {"emacs",
@@ -188,7 +187,7 @@ static const Key keys[] = {
 
     {MODKEY, XK_w, spawn, {.v = bravecmd}},
     {MODKEY, XK_e, spawn, {.v = firefoxcmd}},
-    {MODKEY, XK_n, spawn, {.v = newsboatcmd}},
+    {MODKEY, XK_n, spawn, SHCMD("st -e neomutt")},
     {MODKEY, XK_a, spawn, {.v = flameshotcmd}},
     {MODKEY, XK_c, spawn, {.v = offlinevideos}},
     {MODKEY, XK_b, spawn, {.v = bookmark}},

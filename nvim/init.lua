@@ -19,5 +19,3 @@ require("sahil.plugins.toggleterm")
 require("sahil.plugins.indentation")
 require("sahil.plugins.nvim-colorizer")
 require("sahil.plugins.dap")
--- vim.o.background = "dark" -- or "light" for light mode
--- vim.cmd([[colorscheme gruvbox]])

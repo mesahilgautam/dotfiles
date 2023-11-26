@@ -6,7 +6,7 @@ require("catppuccin").setup({
   },
   transparent_background = true, -- disables setting the background color.
   show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-  term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
+  term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
   dim_inactive = {
     enabled = false, -- dims the background color of inactive window
     shade = "dark",
@@ -19,23 +19,17 @@ require("catppuccin").setup({
     comments = { "italic" }, -- Change the style of comments
     conditionals = { "italic" },
     loops = {},
-    functions = { "bold" },
-    keywords = { "bold" },
+    functions = { "bold", "italic" },
+    keywords = { "bold", "italic" },
     strings = {},
     variables = { "bold" },
     numbers = {},
     booleans = {},
     properties = {},
-    types = { "bold" },
+    types = {},
     operators = {},
   },
-  color_overrides = {
-    mocha = {
-      base = "#000000",
-      mantle = "#000000",
-      crust = "#000000",
-    },
-  },
+  color_overrides = {},
   custom_highlights = {},
   integrations = {
     cmp = true,
@@ -50,8 +44,6 @@ require("catppuccin").setup({
     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
   },
 })
---
--- -- setup must be called before loading
+
+-- setup must be called before loading
 vim.cmd.colorscheme("catppuccin")
--- vim.o.background = "dark" -- or "light" for light mode
--- vim.cmd([[colorscheme gruvbox]])

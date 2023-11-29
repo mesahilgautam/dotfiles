@@ -12,6 +12,7 @@ function setup() {
     # setup all symbolic links
     mkdir -p ~/.config
     mkdir -p ~/.cache/zsh
+    mkdir -p ~/.config/emacs
     touch ~/.cache/zsh/history
 
 	sudo ln -s ~/repos/config/nvim ~/.config/nvim
@@ -29,6 +30,10 @@ function setup() {
 	sudo ln -s ~/repos/config/.xinitrc ~/.xinitrc
 	sudo ln -s ~/repos/config/.zshrc ~/.zshrc
 	sudo ln -s ~/repos/config/.zprofile ~/.zprofile
+
+    #  create symbolic links to the files only, so that It don't save the downloads (plugins)
+    sudo ln -s ~/repos/config/.emacs.d/init.el ~/.config/emacs/init.el
+    sudo ln -s ~/repos/config/.emacs.d/config.org ~/.config/emacs/config.org
 
     export PATH="/home/$USER/repos/config/bin:$PATH"
 
@@ -67,6 +72,7 @@ function packageInstall() {
         "libpulse"
 
         "neovim"
+        "emacs"
         "clang"
         "npm"
         "make"

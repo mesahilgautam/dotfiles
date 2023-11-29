@@ -11,7 +11,7 @@ vim.keymap.set("", "<right>", "<nop>", { noremap = true })
 vim.keymap.set("i", "<left>", "<nop>", { noremap = true })
 vim.keymap.set("i", "<right>", "<nop>", { noremap = true })
 
-vim.opt.mouse = ""
+-- vim.opt.mouse = ""
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)

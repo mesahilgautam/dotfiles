@@ -1,0 +1,12 @@
+# #!/bin/bash
+# # the goal here was to create a script which pgrep -f 's names
+# # of the programs, and if rhey are running, then it should print their
+# # logos on the top corner.
+# #
+# # for programs like obs or discord or flameshot... etc (the deamonized ones)
+# string=" "
+# pgrep -f obs 1>/dev/null 2>&1 && string+=" 󰚀 "
+# pgrep -f yt-dlp 1>/dev/null 2>&1 && string+="  "
+# pgrep -f flameshot 1>/dev/null 2>&1 && string+=" 󱣴 "
+# pgrep -f discord 1>/dev/null 2>&1 && string+=" 󰙯 "
+# echo "($string)"

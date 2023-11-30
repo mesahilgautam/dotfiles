@@ -1,0 +1,688 @@
+* Emacs Configuration
+** UI Enhancements
+
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+(blink-cursor-mode -1)
+
+(global-hl-line-mode +1)
+(line-number-mode +1)
+(global-display-line-numbers-mode +1)
+(column-number-mode t)
+(size-indication-mode t)
+
+(setq inhibit-startup-screen t)
+
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+       (abbreviate-file-name (buffer-file-name))
+       "%b"))))
+
+(setq scroll-margin 0
+      scroll-conservatively 100000
+      scroll-preserve-screen-position 1)
+(set-frame-font "JetBrainsMono Nerd Font" nil t)
+#+end_src
+
+#+RESULTS:
+
+** Evil Mode
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :ensure t
+    :init
+    (evil-mode 1))
+#+end_src
+
+#+RESULTS:
+
+** Doom Theme
+
+#+begin_src emacs-lisp
+  ;;(use-package doom-themes
+  ;;  :ensure t
+  ;;  :config
+  ;;  ;; Global settings (defaults)
+  ;;  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+  ;;        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;;  (load-theme 'doom-one t)
+  ;;
+  ;;  ;; Enable flashing mode-line on errors
+  ;;  (doom-themes-visual-bell-config)
+  ;;  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  ;;  (doom-themes-neotree-config)
+  ;;  ;; or for treemacs users
+  ;;  (setq doom-themes-treemacs-theme "doom-dracula") ; use "doom-colors" for less minimal icon theme
+  ;;  (doom-themes-treemacs-config)
+  ;;  ;; Corrects (and improves) org-mode's native fontification.
+  ;;  (doom-themes-org-config))
+(add-to-list 'custom-theme-load-path "~/.config/emacs/theme/")
+  (load-theme 'atom-one-dark t)
+#+end_src
+
+#+RESULTS:
+: t
+
+** Fonts
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+** Org Bullets
+
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :init
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+
+
+** Transparency Settings
+
+#+begin_src emacs-lisp
+    ;; Make frame transparency overridable
+    (defvar efs/frame-transparency '(90 . 90))
+
+  ;; NOTE: init.el is now generated from Emacs.org.  Please edit that file
+  ;;       in Emacs and init.el will be generated automatically!
+
+  ;; You will most likely need to adjust this font size for your system!
+  (defvar efs/default-font-size 180)
+  (defvar efs/default-variable-font-size 180)
+
+;; Set frame transparency
+(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+#+end_src
+
+#+RESULTS:
+
+** ModLine
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+

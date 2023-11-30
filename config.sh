@@ -34,6 +34,7 @@ function setup() {
     #  create symbolic links to the files only, so that It don't save the downloads (plugins)
     sudo ln -s ~/repos/config/emacs/init.el ~/.config/emacs/init.el
     sudo ln -s ~/repos/config/emacs/config.org ~/.config/emacs/config.org
+    sudo ln -s ~/repos/config/emacs/theme ~/.config/emacs/theme
 
     export PATH="/home/$USER/repos/config/bin:$PATH"
 

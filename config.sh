@@ -117,7 +117,7 @@ function packageInstall() {
         "g++"
         "make"
         "fzf"
-        "pyenv"
+        "pyenv" # to manage different python versions
         ""
         ""
         # ""

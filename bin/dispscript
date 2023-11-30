@@ -2,7 +2,7 @@
 
 status=$(xrandr -q | grep "^DP-1 connected")
 
-wallpaper="/home/$USER/repos/config/wallpapers/window.jpg"
+wallpaper="/home/$USER/repos/config/wallpapers/wallpaper.png"
 
 if [ -z $status ]
 then

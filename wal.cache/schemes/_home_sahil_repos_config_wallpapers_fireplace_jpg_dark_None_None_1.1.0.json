@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/repos/config/wallpapers/fireplace.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0B0D16",
+        "foreground": "#c7827b",
+        "cursor": "#c7827b"
+    },
+    "colors": {
+        "color0": "#0B0D16",
+        "color1": "#263D63",
+        "color2": "#1E4348",
+        "color3": "#2A4D4D",
+        "color4": "#3C5045",
+        "color5": "#314E69",
+        "color6": "#757376",
+        "color7": "#c7827b",
+        "color8": "#8b5b56",
+        "color9": "#263D63",
+        "color10": "#1E4348",
+        "color11": "#2A4D4D",
+        "color12": "#3C5045",
+        "color13": "#314E69",
+        "color14": "#757376",
+        "color15": "#c7827b"
+    }
+}

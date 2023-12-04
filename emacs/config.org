@@ -1,15 +1,7 @@
-* Emacs Configuration
+#+TITLE: Sahil's Emacs Configuration
+#+AUTHOR: Sahil Gautam
 
-#+begin_src emacs-lisp
-  (add-to-list 'package-archives
-		   '("melpa" . "https://melpa.org/packages/") t)
-						 ;; (package-initialize)
-
-  (unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))
-#+end_src
-
+* Emacs
 ** Evil Mode
 
 #+begin_src emacs-lisp
@@ -17,29 +9,35 @@
     :ensure t ; Automatically install Evil if not already installed
     :config
     (evil-mode 1)) ; Enable Evil mode on startup
-    (evil-set-undo-system 'undo-redo)
+  (evil-set-undo-system 'undo-redo)
 #+end_src
 
 ** Doom Themes
 
 #+begin_src emacs-lisp
   (use-package doom-themes
-	:ensure t
-	:config
-	;; Global settings (defaults)
-	(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+    :ensure t
+    :config
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
-	;; (load-theme 'doom-one t)
+    ;; (load-theme 'doom-one t)
 
-	(load-theme 'doom-acario-dark t)
-	;; Enable flashing mode-line on errors
-	(doom-themes-visual-bell-config)
-	;; Enable custom neotree theme (all-the-icons must be installed!)
-	;; or for treemacs users
-    (setq doom-themes-treemacs-theme "doom-acario-dark") ; use "doom-colors" for less minimal icon theme
-	(doom-themes-treemacs-config)
-	;; Corrects (and improves) org-mode's native fontification.
-	(doom-themes-org-config))  
+    (load-theme 'doom-acario-dark t)
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Enable custom neotree theme (all-the-icons must be installed!)
+    ;; or for treemacs users
+    (setq doom-themes-treemacs-theme "doom-palenight") ; use "doom-colors" for less minimal icon theme
+    (doom-themes-treemacs-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))  
+#+end_src
+
+** TODO Doom Modline
+
+#+begin_src emacs-lisp
+
 #+end_src
 
 ** UI Enhancements
@@ -55,7 +53,7 @@
   (setq-default mode-line-format nil)
   (setq initial-scratch-message "")
   (setq inhibit-startup-message t)
-  (setq standard-indent 4)
+  (setq standard-indent 2)
   (global-hl-line-mode -1)
 
 
@@ -69,48 +67,208 @@
   (setq inhibit-startup-echo-area-message "")
 
   (setq inhibit-startup-message t)
-  (global-display-line-numbers-mode t)
-  (setq display-line-numbers-type 'relative
-      display-line-numbers-current-absolute nil
-      display-line-numbers-widen t)
+  ;; (global-display-line-numbers-mode nil)
+  ;; (setq display-line-numbers-type 'relative
+  ;;       display-line-numbers-current-absolute nil
+  ;;       display-line-numbers-widen t)
   ;; (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode 'relative)))
 
   (setq org-image-actual-width nil)
   (setq org-image-actual-width (list 650)) ;; works!
 #+end_src
 
-** Font Configuration
+** Keybindings
 
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 115)
-  (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd Font" :height 110)
-  (set-face-attribute 'variable-pitch nil :font "JetBrainsMono Nerd Font" :height 100 :weight 'regular)
+  (use-package evil-leader
+    :ensure t
+    :config
+    (global-evil-leader-mode)
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key
+      "w" 'save-buffer
+      "W" 'evil-write-all
+      "mp" 'dashboard-open
+      "mm" 'bookmark-set
+      "." 'find-file
+      "q" 'evil-quit
+      "t" 'new-vterm-tile
+      "ot" 'org-roam-buffer-toggle
+      "of" 'org-roam-node-find
+      "oi" 'org-roam-node-insert
+      "r" 'org-babel-remove-result-one-or-many
+      "x" 'org-babel-execute-src-block
+      "sh" 'evil-window-split
+      "sv" 'evil-window-vsplit
+      "e" 'treemacs
+      "1" (lambda () (interactive) (jump-to-nth-bookmark 1))
+      "2" (lambda () (interactive) (jump-to-nth-bookmark 2))
+      "3" (lambda () (interactive) (jump-to-nth-bookmark 3))
+      "4" (lambda () (interactive) (jump-to-nth-bookmark 4))
+      "5" (lambda () (interactive) (jump-to-nth-bookmark 5)))
+    )
+
+					  ; Window Navigation Keybindings Ctrl+VI
+  (global-set-key (kbd "C-h") 'evil-window-left)
+					  ; Not Working for some reason
+					  ; (global-set-key (kbd "C-k") 'windmove-down)
+  (global-set-key (kbd "C-k") 'windmove-up)
+  (global-set-key (kbd "C-l") 'evil-window-right)
+
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+  (add-hook 'org-mode-hook (lambda ()
+			     (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)))
+					  ; (define-key evil-insert-state-map (kbd "TAB") 'indent-for-tab-command)
+
+
+
+  (global-set-key (kbd "C-o") 'previous-buffer)
+  (global-set-key (kbd "C-i") 'next-buffer)
+
+					  ; If pressed <TAB> in evil-insert mode, then it's a tabspace.
+  (setq-default tab-width 2)
+  (add-hook 'evil-insert-state-entry-hook
+  (lambda ()
+    (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)))
+
+  (add-hook 'evil-normal-state-entry-hook
+  (lambda ()
+    (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)))
+#+end_src
+
+#+RESULTS:
+| lambda | nil | (define-key evil-insert-state-map (kbd TAB) 'tab-to-tab-stop) |
+
+#
+** Dashboard
+
+#+begin_src emacs-lisp
+  ;; use-package with package.el:
+  (use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+  ;; use-package with Elpaca:
+  (use-package dashboard
+  :config
+  (add-hook 'elpaca-after-init-hook #'dashboard-insert-startupify-lists)
+  (add-hook 'elpaca-after-init-hook #'dashboard-initialize)
+  (dashboard-setup-startup-hook))
+
+  (setq dashboard-startup-banner "/home/sahil/repos/config/emacs/brain2.png")
+  (setq dashboard-init-info "")
+  (setq dashboard-set-footer nil)
+  (setq dashboard-set-init-info t)
+
+  (setq dashboard-items nil)
+#+end_src
+
+#+RESULTS:
+
+** Transparency Settings
+
+#+begin_src emacs-lisp
+  (defvar efs/frame-transparency '(90 . 90))
+  (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+  (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+  (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+#+end_src
+
+#+RESULTS:
+
+** Bookmarking
+
+#+begin_src emacs-lisp
+  (require 'bookmark)
+  (defun jump-to-nth-bookmark (n)
+  ;; "Jump to the nth bookmark in the bookmarks list."
+  (bookmark-maybe-load-default-file)
+  (let ((bookmark-names (bookmark-all-names)))
+    (when (and bookmark-names
+	       (<= n (length bookmark-names)))
+      (bookmark-jump (nth (1- n) bookmark-names)))))
+
+#+end_src
+
+#+RESULTS:
+: jump-to-nth-bookmark
+
+** TODO Mail Client (mu4e)
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+** TODO EXWM (emacs X window manager)
+
+#+begin_src emacs-lisp
+  ;; exwm for emacs :) Sweet Sweet emacs
+#+end_src
+
+** TODO Fonts
+
+#+begin_src emacs-lisp
+  ;; change the default font size
+  (set-face-attribute 'default nil :height 137)
+#+end_src
+
+#+RESULTS:
+
+** TODO Flying Cursor
+** TODO Which-Key
+
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+#+end_src
+
+#+RESULTS:
+
+* Org Mode 
+** Org Bullets and Ellipsis
+
+#+begin_src emacs-lisp
+  (use-package org-bullets
+  :ensure t
+  :init
+  (setq org-bullets-face-name "JetBrainsMono Nerd Font")
+  (setq org-bullets-bullet-list
+	'("◉" "✸" "●" "►" "✿" "◇"))
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (setq org-ellipsis "")
 #+end_src
 
 ** Org Babel and autoindent
 
 #+begin_src emacs-lisp
   (setq org-confirm-babel-evaluate nil)
-  (setq org-adapt-indentation t)	;; autoindent under headings
-  (setq make-backup-files nil)		;; autosave == nil
+  (setq org-adapt-indentation t)  ;; autoindent under headings
+  (setq make-backup-files nil)    ;; autosave == nil
 #+end_src
 
-** Org Bullets
+** Visual Fill Column
 
 #+begin_src emacs-lisp
-  (use-package org-bullets
+  (use-package visual-fill-column
   :ensure t
-  :init
-  (setq org-bullets-face-name "Inconsolata-12")
-  (setq org-bullets-bullet-list
-	'("◉" "✸" "●" "►" "✿" "◇"))
   :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (setq visual-fill-column-width 120
+	visual-fill-column-center-text t)
+  :init
+  (visual-fill-column-mode t))
+
+  (defun add-fill-column ()
+  (setq visual-fill-column-width 120)
+  (setq visual-fill-column-center-text t)
+  (visual-fill-column-mode t))
+
+  (add-hook 'org-mode-hook 'add-fill-column)
 
 #+end_src
-
-#+RESULTS:
-: t
 
 ** Hide Sourceblock Markers
 
@@ -131,1017 +289,657 @@
 	       ))
 #+end_src
 
-** Treesitter
-
-#+begin_src emacs-lisp
-  (use-package tree-sitter
-    :ensure t ; Automatically install tree-sitter if not already installed
-    :config
-    (global-tree-sitter-mode 1))
-
-  (use-package tree-sitter-langs
-    :ensure t
-    :after tree-sitter
-    :config
-    (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-#+end_src
-
-** Keybindings
-
-#+begin_src emacs-lisp
-  (use-package evil-leader
-	:ensure t
-	:config
-	(global-evil-leader-mode)
-	(evil-leader/set-leader "<SPC>")
-	(evil-leader/set-key
-	  "w" 'save-buffer
-	  "W" 'evil-write-all
-	  "mp" 'dashboard-open
-	  "mm" 'bookmark-set
-	  "." 'find-file
-	  "q" 'evil-quit
-	  "ot" 'org-roam-buffer-toggle
-	  "of" 'org-roam-node-find
-	  "oi" 'org-roam-node-insert
-	  "or" 'org-babel-remove-result-one-or-many
-	  "sh" 'evil-window-split
-	  "sv" 'evil-window-vsplit
-	  "e" 'treemacs
-	  "1" (lambda () (interactive) (jump-to-nth-bookmark 1))
-	  "2" (lambda () (interactive) (jump-to-nth-bookmark 2))
-	  "3" (lambda () (interactive) (jump-to-nth-bookmark 3))
-	  "4" (lambda () (interactive) (jump-to-nth-bookmark 4))
-	  "5" (lambda () (interactive) (jump-to-nth-bookmark 5)))
-	)
-
-  ;; Window Navigation Keybindings Ctrl+VI
-  (global-set-key (kbd "C-h") 'evil-window-left)
-  ;; Not Working for some reason
-  ;; (global-set-key (kbd "C-k") 'windmove-down)
-  (global-set-key (kbd "C-k") 'windmove-up)
-  (global-set-key (kbd "C-l") 'evil-window-right)
-
-  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-  (add-hook 'org-mode-hook (lambda ()
-			     (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)))
-  ;; (define-key evil-insert-state-map (kbd "TAB") 'indent-for-tab-command)
-
-
-
-  (global-set-key (kbd "C-o") 'previous-buffer)
-  (global-set-key (kbd "C-i") 'next-buffer)
-
-	;; If pressed <TAB> in evil-insert mode, then it's a tabspace.
-	;; (setq-default tab-width 4)
-	;; (add-hook 'evil-insert-state-entry-hook
-	;; 			(lambda ()
-	;; 			  (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)))
-#+end_src
-
 #+RESULTS:
-: next-buffer
+| (lambda nil (set-face-attribute 'org-block-begin-line nil :background 'unspecified) (set-face-attribute 'org-block-end-line nil :background 'unspecified) (set-face-attribute 'org-block-begin-line nil :foreground (face-background 'org-block-begin-line nil 'default)) (set-face-attribute 'org-block-end-line nil :foreground (face-background 'org-block-end-line nil 'default))) | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-fold-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes |
 
-** Org Roam (wiki)
-
-#+begin_src emacs-lisp
-  (use-package org-roam
-	:ensure t
-	:init
-	(setq org-roam-v2-ack t)
-	:custom
-	(org-roam-directory "~/.config/repos/archive/project9")
-	(org-roam-completion-everywhere t)
-	:bind (("C-c n l" . org-roam-buffer-toggle)
-		   ("C-c n f" . org-roam-node-find)
-		   ("C-c n i" . org-roam-node-insert)
-		   :map org-mode-map
-		   ("C-M-i" . completion-at-point)
-		   :map org-roam-dailies-map
-		   ("Y" . org-roam-dailies-capture-yesterday)
-		   ("T" . org-roam-dailies-capture-tomorrow))
-	:bind-keymap
-	("C-c n d" . org-roam-dailies-map)
-	:config
-	(require 'org-roam-dailies) ;; Ensure the keymap is available
-	(org-roam-db-autosync-mode))
-
-
-  (defun my-org-roam-open-link-in-same-buffer ()
-	"Open the org-roam link in the same buffer."
-	(interactive)
-	(let ((org-roam-buffer-visit-no-window t))
-	  (org-open-at-point)))
-
-  (with-eval-after-load 'org-roam
-	(define-key org-roam-link-map (kbd "C-c C-o") #'my-org-roam-open-link-in-same-buffer))
-#+end_src
-
-** Dashboard
+** Presevre Indentation (Org-Mode)
 
 #+begin_src emacs-lisp
-     ;; use-package with package.el:
-     (use-package dashboard
-       :ensure t
-       :config
-       (dashboard-setup-startup-hook))
-     ;; use-package with Elpaca:
-     (use-package dashboard
-       :config
-       (add-hook 'elpaca-after-init-hook #'dashboard-insert-startupify-lists)
-       (add-hook 'elpaca-after-init-hook #'dashboard-initialize)
-       (dashboard-setup-startup-hook))
-     (setq dashboard-startup-banner "/home/sahil/.emacs.d/archer.png")
+  ;; word wrapping
+  (setq word-wrapping t)
+  (setq word-wrap t)
+  (setq org-src-tab-acts-natively nil)
+  (setq evil-want-C-i-jump t)
+  (setq org-src-preserve-indentation t)
 
+  ;; use spaces instead of tabs while indenting
+  (setq-default indent-tabs-mode nil)
 #+end_src
 
 ** Evil Commentry (comment with gc)
 
 #+begin_src emacs-lisp
-  ;; Install evil-commentary if you haven't already
+  ;;Install evil-commentary if you haven't already
   (use-package evil-commentary
-	:ensure t
-	:config
-	(evil-commentary-mode))
+  :ensure t
+  :config
+  (evil-commentary-mode))
 
   ;; Optional: Map 'gc' in visual mode to comment/uncomment
   (define-key evil-visual-state-map "gc" 'evil-commentary)
 
 #+end_src
 
-** AutoPair
+#+RESULTS:
+: evil-commentary
+
+** TODO Org-Roam
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+** TODO Org-Present
+
+#+begin_src emacs-lisp
+  ;; https://github.com/rlister/org-present/tree/master
+  ;; And when inline images are shown in the slides, it's charming
+#+end_src
+
+** TODO Org-Publish
+** TODO Org-Appear
+
+#+begin_src emacs-lisp
+  (use-package org-appear
+  :ensure t
+  :config
+  (setq org-appear-autoemphasis t)
+  (setq org-hide-emphasis-markers t)
+  (setq org-appear-autolinks t)
+  (setq org-link-descriptive t)
+  :init
+  (add-hook 'org-mode-hook 'org-appear-mode))
+#+end_src
+
+** TODO Org-padding
+
+#+begin_src emacs-lisp
+#+end_src
+
+** TODO Org-Excalidraw
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+* Developement
+** RainBow Mode
+
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+  :ensure t
+  :config
+  (setq rainbow-mode t))
+#+end_src
+
+** AutoPair and symlinks
 
 #+begin_src emacs-lisp
   (electric-pair-mode 1)
+  (setq vc-follow-symlinks t)
 #+end_src
 
-** Dired FileManager
+** TODO Treesitter
 
 #+begin_src emacs-lisp
-  (use-package all-the-icons-dired
-    :ensure t
-    :config
-    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  ;; treesitter
 #+end_src
 
-** Bookmarking
+** TODO C-C++ LSP
+
 #+begin_src emacs-lisp
-  (require 'bookmark)
-  (defun jump-to-nth-bookmark (n)
-    "Jump to the nth bookmark in the bookmarks list."
-    (bookmark-maybe-load-default-file)
-    (let ((bookmark-names (bookmark-all-names)))
-      (when (and bookmark-names
-		 (<= n (length bookmark-names)))
-	(bookmark-jump (nth (1- n) bookmark-names)))))
+  ;; C-CPP lsp
+#+end_src
 
-    ;; (evil-define-key 'normal global-map
-    ;; (kbd "SPC t") (lambda () (interactive) (jump-to-nth-bookmark 1)) ; Bind "Space t" to jump to the first bookmark
-    ;; (kbd "SPC m") (lambda () (interactive) (jump-to-nth-bookmark 2)) ; Bind "Space m" to jump to the second bookmark
+** TODO Python LSP
 
-    ;; (kbd "t") (lambda () (interactive) (jump-to-nth-bookmark 1)) ; Bind "Space t" to jump to the first bookmark
-    ;; (kbd "m") (lambda () (interactive) (jump-to-nth-bookmark 2)) ; Bind "Space m" to jump to the second bookmark
-    ;; )
-    #+end_src
+#+begin_src emacs-lisp
+  ;; python lsp
+#+end_src
+
+** TODO Java LSP
+
+#+begin_src emacs-lisp
+  ;; java lsp
+#+end_src
+
+** TODO Snippet-Engine and Snippets
+
+#+begin_src emacs-lisp
+  ;; snippets
+#+end_src
+
+** TODO Fuzzy Finder 
+
+#+begin_src emacs-lisp
+  ;; fuzzy finder like telescope (or similar to that)
+#+end_src
+
+** TODO Magit (Git Client)
+
+#+begin_src emacs-lisp
+  ;; magit just for git diff's and reviewing before pushing.
+  ;; Nothing can beat the commandline still!
+#+end_src
+
+** TODO Terminals and Shells
+
+#+begin_src emacs-lisp
+  (use-package vterm
+  :ensure t)
+#+end_src
+
+** TODO File Tree
+
+#+begin_src emacs-lisp
+
+#+end_src
 
 ** TODO Indentation Lines
 
 #+begin_src emacs-lisp
+
 #+end_src
 
-#+RESULTS:
-: t
-
-** TODO Treemacs
+** TODO Tabs/Buffers
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Tabs
+** TODO Debugger
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Tab Related Shortcuts
+** TODO Org-Babel
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Org Agenda
-
-#+begin_src emacs-lisp
-  (setq org-agenda-files
-	  '("/home/sahil/.config/repos/archive/project9/"))
-  ;; org-agenda
-  ;; org-schedule
-  ;; org-deadline
-#+end_src
-
-** TODO Transparency Settings
-
-#+begin_src emacs-lisp
-  ;; if any though. I am ok with plain emacs with doom themes.
-#+end_src
-
-** TODO C/C++ Lsp
+** Empty
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO RainBow Mode
-
-** TODO Cursor Flashing (beacon)
 
 #+begin_src emacs-lisp
-  ;; (use-package beacon
-  ;;   :ensure t
-  ;;   :config
-  ;;   (beacon-mode 1)
-  ;;   (setq beacon-blink-when-window-scrolls t)  ; Blink when scrolling
-  ;;   (setq beacon-blink-when-point-moves t)     ; Blink when point moves to a different line
-  ;;   (setq beacon-blink-when-buffer-changes t)  ; Blink when switching buffers
-  ;;   (setq beacon-blink-when-file-changes t)    ; Blink when a file changes
-  ;;   (setq beacon-blink-duration 0.1)
-
-  ;;   (setq beacon-size 10)
-  ;;   (setq beacon-blink-delay 0.3)
-  ;;   )
-  ;; ;; (setq beacon-blink-when-buffer-changes t)
-  ;; ;; (setq beacon-blink-when-window-scrolls nil)
-  ;; ;; (setq beacon-blink-when-window-changes t)
-  ;; ;; (setq beacon-blink-when-focused nil)
-  ;; ;; (setq beacon-blink-when-point-moves-vertically t)
-#+end_src
-
-#+RESULTS:
-: t
-
-** TODO Excalidraw
-
-   #+begin_src emacs-lisp
-
-   #+end_src
-
-** TODO DOOM Modline
-   #+begin_src emacs-lisp
-  ;; left for future
-#+end_src
-
-#+RESULTS:
-: t
-
-* From Previous Config (to get working smoothly)
-** CC LSP
-*** Evil Commentry (comment with gc)
-#+begin_src emacs-lisp
-;; Install evil-commentary if you haven't already
-(use-package evil-commentary
-  :ensure t
-  :config
-  (evil-commentary-mode))
-
-;; Optional: Map 'gc' in visual mode to comment/uncomment
-(define-key evil-visual-state-map "gc" 'evil-commentary)
 
 #+end_src
 
-*** Snippet Engine (yasnippet)
+
 #+begin_src emacs-lisp
 
-    ;;(require 'package)
-    ;;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-    ;;(package-initialize)
+#+end_src
 
-    (setq package-selected-packages '(lsp-mode yasnippet lsp-treemacs helm-lsp
-	projectile hydra flycheck company avy which-key helm-xref dap-mode))
 
-    (when (cl-find-if-not #'package-installed-p package-selected-packages)
-      (package-refresh-contents)
-      (mapc #'package-install package-selected-packages))
-
-    ;; sample `helm' configuration use https://github.com/emacs-helm/helm/ for details
-    (helm-mode)
-    (require 'helm-xref)
-    (define-key global-map [remap find-file] #'helm-find-files)
-    (define-key global-map [remap execute-extended-command] #'helm-M-x)
-    (define-key global-map [remap switch-to-buffer] #'helm-mini)
-
-    (which-key-mode)
-    (add-hook 'c-mode-hook 'lsp)
-    (add-hook 'c++-mode-hook 'lsp)
-
-    (setq gc-cons-threshold (* 100 1024 1024)
-	  read-process-output-max (* 1024 1024)
-	  treemacs-space-between-root-nodes nil
-	  company-idle-delay 0.0
-	  company-minimum-prefix-length 1
-	  lsp-idle-delay 0.1)  ;; clangd is fast
-
-    (with-eval-after-load 'lsp-mode
-      (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-      (require 'dap-cpptools)
-      (yas-global-mode))
-
-  (require 'yasnippet)
-  (yas-global-mode 1)
+#+begin_src emacs-lisp
 
 #+end_src
 
-#+RESULTS:
-: t
 
-;;* Emacs Configuration
-;;** UI Enhancements
-;;
-;;#+begin_src emacs-lisp
-;;  (menu-bar-mode -1)
-;;  (toggle-scroll-bar -1)
-;;  (tool-bar-mode -1)
-;;  (blink-cursor-mode -1)
-;;
-;;  (global-hl-line-mode +1)
-;;  (line-number-mode +1)
-;;  (global-display-line-numbers-mode +1)
-;;  (column-number-mode t)
-;;  (size-indication-mode t)
-;;
-;;  (setq inhibit-startup-screen t)
-;;
-;;  (setq frame-title-format
-;;	'((:eval (if (buffer-file-name)
-;;		     (abbreviate-file-name (buffer-file-name))
-;;		   "%b"))))
-;;
-;;  (setq scroll-margin 0
-;;	scroll-conservatively 100000
-;;	scroll-preserve-screen-position 1)
-;;  (set-frame-font "JetBrainsMono Nerd Font" nil t)
-;;#+end_src
-;;
-;;#+RESULTS:
-;;
-;;** Other Enhancements
-;;#+begin_src emacs-lisp
-;;;; don't ask to follow symbolic links
-;;  (setq vc-follow-symlinks t)
-;;#+end_src
-;;
-;;
-;;** Evil Mode
-;;
-;;#+begin_src emacs-lisp
-;;  (use-package evil
-;;    :ensure t
-;;    :init
-;;    (evil-mode 1))
-;;#+end_src
-;;
-;;#+RESULTS:
-;;
-;;** Catppuccin Theme
-;;
-;;#+begin_src emacs-lisp
-;;    (add-to-list 'custom-theme-load-path "~/.config/emacs/theme/catppuccin/")
-;;    (load-theme 'catppuccin t)
-;;    (setq catppuccin-flavor 'mocha) ;; or 'latte, 'macchiato, or 'mocha
-;;#+end_src
-;;
-;;#+RESULTS:
-;;: macchiato
-;;
-;;** Fonts
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;** Org Bullets
-;;
-;;#+begin_src emacs-lisp
-;;  (use-package org-bullets
-;;    :ensure t
-;;    :init
-;;    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-;;  (setq org-bullets-bullet-list '("◉" "✸" "⁖"  "✿"))
-;;#+end_src
-;;
-;;
-;;
-;;** Transparency Settings
-;;
-;;#+begin_src emacs-lisp
-;;  ;; Make frame transparency overridable
-;;  (defvar efs/frame-transparency '(90 . 90))
-;;
-;;  ;; NOTE: init.el is now generated from Emacs.org.  Please edit that file
-;;  ;;       in Emacs and init.el will be generated automatically!
-;;
-;;  ;; You will most likely need to adjust this font size for your system!
-;;  (defvar efs/default-font-size 180)
-;;  (defvar efs/default-variable-font-size 180)
-;;
-;;  ;; Set frame transparency
-;;  (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
-;;  (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
-;;  (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-;;  (add-to-list 'default-frame-alist '(fullscreen . maximized))
-;;#+end_src
-;;
-;;#+RESULTS:
-;;
-;;** ModLine
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;** KeyBindings (Evil Leader)
-;;
-;;#+begin_src emacs-lisp
-;;;;  (use-package evil-leader
-;;;;  :ensure t
-;;;;  :config
-;;;;  (setq evil-leader/set-leader "<SPC>")
-;;;;  (evil-leader/set-key "e" 'find-file)
-;;;;  :init
-;;;;    (global-evil-leader-mode)
-;;;;  )
-;;#+end_src
-;;
-;;
-;;** AutoPair
-;;
-;;#+begin_src emacs-lisp
-;;(setq electric-pair-mode 1)
-;;#+end_src
-;;
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;#+begin_src emacs-lisp
-;;
-;;#+end_src
-;;
-;;
-;;
-;;
-;;
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src emacs-lisp
+
+#+end_src
+
+
+#+begin_src sql
+
+#+end_src
+
+
+
+

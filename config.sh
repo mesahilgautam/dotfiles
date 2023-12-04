@@ -77,6 +77,7 @@ function packageInstall() {
         "clang"
         "npm"
         "make"
+        "cmake"
         "xwallpaper"
         "xcompmgr"
         "xsel"
@@ -118,7 +119,7 @@ function packageInstall() {
         "make"
         "fzf"
         "pyenv" # to manage different python versions
-        ""
+        "lazygit" # a minimal terminal based git client(ish) [maybe]
         ""
         # ""
         # ""

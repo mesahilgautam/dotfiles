@@ -1,6 +1,6 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
-PROMPT='%F{green}[%n%f%F{red}@%f%F{blue}%m]%f %F{green}%f%F{blue}%c%f %F{red}${vcs_info_msg_0_}%f$ '
+PROMPT='%F{blue}[%n%f%F{red}@%f%F{blue}%m]%f %F{green}%f%F{blue}%c%f %F{red}${vcs_info_msg_0_}%f$ '
 
 # History in cache directory:
 HISTSIZE=10000
@@ -113,7 +113,7 @@ precmd() { vcs_info }
 
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{green}[%n%f%F{red}@%f%F{blue}%m]%f %F{green}%f%F{blue}%c%f %F{red}${vcs_info_msg_0_}%f$ '
+PROMPT='%F{blue}[%n%f%F{red}@%f%F{blue}%m]%f %F{green}%f%F{blue}%c%f %F{red}${vcs_info_msg_0_}%f$ '
 
 
 

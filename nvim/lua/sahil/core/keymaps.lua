@@ -95,7 +95,7 @@ keymap.set("n", "<leader>nh", ":nohlsearch<CR>")
 keymap.set("n", "<leader>s", ":source %<CR>")
 keymap.set("n", "<leader>q", ":q<CR>")
 keymap.set("n", "<leader>w", ":w!<CR>")
--- keymap.set("n", "z", ":ToggleTerm<CR>")
+keymap.set("n", "z", ":ToggleTerm<CR>")
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
 

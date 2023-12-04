@@ -22,7 +22,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(docker evil-leader org-bullets catppuccin-theme doom-themes evil)))
+   '(quelpa org-appear vterm xterm visual-fill-column rainbow-mode dashboard evil-commentary docker evil-leader org-bullets catppuccin-theme doom-themes evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

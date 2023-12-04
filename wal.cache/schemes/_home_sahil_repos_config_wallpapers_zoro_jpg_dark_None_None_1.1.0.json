@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/sahil/repos/config/wallpapers/zoro.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0E1017",
+        "foreground": "#ace0c6",
+        "cursor": "#ace0c6"
+    },
+    "colors": {
+        "color0": "#0E1017",
+        "color1": "#3B4550",
+        "color2": "#386B57",
+        "color3": "#454C58",
+        "color4": "#4D5767",
+        "color5": "#546873",
+        "color6": "#67656B",
+        "color7": "#ace0c6",
+        "color8": "#789c8a",
+        "color9": "#3B4550",
+        "color10": "#386B57",
+        "color11": "#454C58",
+        "color12": "#4D5767",
+        "color13": "#546873",
+        "color14": "#67656B",
+        "color15": "#ace0c6"
+    }
+}

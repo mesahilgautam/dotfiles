@@ -2,7 +2,7 @@
 #+AUTHOR: Sahil Gautam
 
 * Emacs
-** Evil Mode
+**** Evil Mode
 
 #+begin_src emacs-lisp
   (use-package evil
@@ -12,7 +12,7 @@
   (evil-set-undo-system 'undo-redo)
 #+end_src
 
-** Doom Themes
+**** Doom Themes
 
 #+begin_src emacs-lisp
   (use-package doom-themes
@@ -34,13 +34,13 @@
     (doom-themes-org-config))  
 #+end_src
 
-** TODO Doom Modline
+**** TODO Doom Modline
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** UI Enhancements
+**** UI Enhancements
 
 #+begin_src emacs-lisp
   (setq scroll-conservatively 100)
@@ -77,7 +77,7 @@
   (setq org-image-actual-width (list 650)) ;; works!
 #+end_src
 
-** Keybindings
+**** Keybindings
 
 #+begin_src emacs-lisp
   (use-package evil-leader
@@ -141,7 +141,7 @@
 | lambda | nil | (define-key evil-insert-state-map (kbd TAB) 'tab-to-tab-stop) |
 
 #
-** Dashboard
+**** Dashboard
 
 #+begin_src emacs-lisp
   ;; use-package with package.el:
@@ -156,7 +156,7 @@
   (add-hook 'elpaca-after-init-hook #'dashboard-initialize)
   (dashboard-setup-startup-hook))
 
-  (setq dashboard-startup-banner "/home/sahil/repos/config/emacs/brain2.png")
+  (setq dashboard-startup-banner "/home/sahil/repos/config/emacs/dashboard.png")
   (setq dashboard-init-info "")
   (setq dashboard-set-footer nil)
   (setq dashboard-set-init-info t)
@@ -164,9 +164,7 @@
   (setq dashboard-items nil)
 #+end_src
 
-#+RESULTS:
-
-** Transparency Settings
+**** Transparency Settings
 
 #+begin_src emacs-lisp
   (defvar efs/frame-transparency '(90 . 90))
@@ -177,7 +175,7 @@
 
 #+RESULTS:
 
-** Bookmarking
+**** Bookmarking
 
 #+begin_src emacs-lisp
   (require 'bookmark)
@@ -194,29 +192,31 @@
 #+RESULTS:
 : jump-to-nth-bookmark
 
-** TODO Mail Client (mu4e)
+**** TODO Mail Client (mu4e)
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO EXWM (emacs X window manager)
+**** TODO EXWM (emacs X window manager)
 
 #+begin_src emacs-lisp
   ;; exwm for emacs :) Sweet Sweet emacs
 #+end_src
 
-** TODO Fonts
+**** TODO Fonts
 
 #+begin_src emacs-lisp
   ;; change the default font size
-  (set-face-attribute 'default nil :height 137)
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 139)
+  (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd Font" :height 139 )
+  (set-face-attribute 'variable-pitch nil :font "JetBrainsMono Nerd Font" :height 139 :weight 'regular)
 #+end_src
 
 #+RESULTS:
 
-** TODO Flying Cursor
-** TODO Which-Key
+**** TODO Flying Cursor
+**** TODO Which-Key
 
 #+begin_src emacs-lisp
   (use-package which-key
@@ -228,7 +228,7 @@
 #+RESULTS:
 
 * Org Mode 
-** Org Bullets and Ellipsis
+**** Org Bullets and Ellipsis
 
 #+begin_src emacs-lisp
   (use-package org-bullets
@@ -236,21 +236,21 @@
   :init
   (setq org-bullets-face-name "JetBrainsMono Nerd Font")
   (setq org-bullets-bullet-list
-	'("◉" "✸" "●" "►" "✿" "◇"))
+	'("◉" "✸" "◇" "►" "✿" "●" ))
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-  (setq org-ellipsis "")
+  ;; (setq org-ellipsis "")
 #+end_src
 
-** Org Babel and autoindent
+**** Org Babel and autoindent
 
 #+begin_src emacs-lisp
   (setq org-confirm-babel-evaluate nil)
-  (setq org-adapt-indentation t)  ;; autoindent under headings
+  (setq org-adapt-indentation nil)  ;; autoindent under headings
   (setq make-backup-files nil)    ;; autosave == nil
 #+end_src
 
-** Visual Fill Column
+**** Visual Fill Column
 
 #+begin_src emacs-lisp
   (use-package visual-fill-column
@@ -270,7 +270,7 @@
 
 #+end_src
 
-** Hide Sourceblock Markers
+**** Hide Sourceblock Markers
 
 #+begin_src emacs-lisp
   ;; Org mode
@@ -292,7 +292,7 @@
 #+RESULTS:
 | (lambda nil (set-face-attribute 'org-block-begin-line nil :background 'unspecified) (set-face-attribute 'org-block-end-line nil :background 'unspecified) (set-face-attribute 'org-block-begin-line nil :foreground (face-background 'org-block-begin-line nil 'default)) (set-face-attribute 'org-block-end-line nil :foreground (face-background 'org-block-end-line nil 'default))) | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-fold-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes |
 
-** Presevre Indentation (Org-Mode)
+**** Presevre Indentation (Org-Mode)
 
 #+begin_src emacs-lisp
   ;; word wrapping
@@ -306,7 +306,7 @@
   (setq-default indent-tabs-mode nil)
 #+end_src
 
-** Evil Commentry (comment with gc)
+**** Evil Commentry (comment with gc)
 
 #+begin_src emacs-lisp
   ;;Install evil-commentary if you haven't already
@@ -323,21 +323,21 @@
 #+RESULTS:
 : evil-commentary
 
-** TODO Org-Roam
+**** TODO Org-Roam
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Org-Present
+**** TODO Org-Present
 
 #+begin_src emacs-lisp
   ;; https://github.com/rlister/org-present/tree/master
   ;; And when inline images are shown in the slides, it's charming
 #+end_src
 
-** TODO Org-Publish
-** TODO Org-Appear
+**** TODO Org-Publish
+**** TODO Org-Appear
 
 #+begin_src emacs-lisp
   (use-package org-appear
@@ -351,115 +351,115 @@
   (add-hook 'org-mode-hook 'org-appear-mode))
 #+end_src
 
-** TODO Org-padding
+**** TODO Org-padding
 
 #+begin_src emacs-lisp
 #+end_src
 
-** TODO Org-Excalidraw
+**** TODO Org-Excalidraw
 
 #+begin_src emacs-lisp
 
 #+end_src
 
 * Developement
-** RainBow Mode
+**** RainBow Mode
 
 #+begin_src emacs-lisp
   (use-package rainbow-mode
-  :ensure t
-  :config
-  (setq rainbow-mode t))
+    :ensure t
+    :config
+    (setq rainbow-mode t))
 #+end_src
 
-** AutoPair and symlinks
+**** AutoPair and symlinks
 
 #+begin_src emacs-lisp
   (electric-pair-mode 1)
   (setq vc-follow-symlinks t)
 #+end_src
 
-** TODO Treesitter
+**** TODO Treesitter
 
 #+begin_src emacs-lisp
   ;; treesitter
 #+end_src
 
-** TODO C-C++ LSP
+**** TODO C-C++ LSP
 
 #+begin_src emacs-lisp
   ;; C-CPP lsp
 #+end_src
 
-** TODO Python LSP
+**** TODO Python LSP
 
 #+begin_src emacs-lisp
   ;; python lsp
 #+end_src
 
-** TODO Java LSP
+**** TODO Java LSP
 
 #+begin_src emacs-lisp
   ;; java lsp
 #+end_src
 
-** TODO Snippet-Engine and Snippets
+**** TODO Snippet-Engine and Snippets
 
 #+begin_src emacs-lisp
   ;; snippets
 #+end_src
 
-** TODO Fuzzy Finder 
+**** TODO Fuzzy Finder 
 
 #+begin_src emacs-lisp
   ;; fuzzy finder like telescope (or similar to that)
 #+end_src
 
-** TODO Magit (Git Client)
+**** TODO Magit (Git Client)
 
 #+begin_src emacs-lisp
   ;; magit just for git diff's and reviewing before pushing.
   ;; Nothing can beat the commandline still!
 #+end_src
 
-** TODO Terminals and Shells
+**** TODO Terminals and Shells
 
 #+begin_src emacs-lisp
   (use-package vterm
   :ensure t)
 #+end_src
 
-** TODO File Tree
+**** TODO File Tree
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Indentation Lines
+**** TODO Indentation Lines
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Tabs/Buffers
+**** TODO Tabs/Buffers
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Debugger
+**** TODO Debugger
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** TODO Org-Babel
+**** TODO Org-Babel
 
 #+begin_src emacs-lisp
 
 #+end_src
 
-** Empty
+* Empty
 
 #+begin_src emacs-lisp
 

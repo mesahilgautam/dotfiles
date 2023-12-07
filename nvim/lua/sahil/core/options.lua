@@ -10,7 +10,6 @@ vim.keymap.set("", "<left>", "<nop>", { noremap = true })
 vim.keymap.set("", "<right>", "<nop>", { noremap = true })
 vim.keymap.set("i", "<left>", "<nop>", { noremap = true })
 vim.keymap.set("i", "<right>", "<nop>", { noremap = true })
-
 -- vim.opt.mouse = ""
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
@@ -18,6 +17,7 @@ opt.number = true -- shows absolute line number on cursor line (when relative nu
 opt.ruler = false
 opt.cmdheight = 0
 opt.background = "dark"
+opt.fillchars = "fold: "
 -- vim.cmd([[colorscheme gruvbox]])
 
 -- tabs & indentation

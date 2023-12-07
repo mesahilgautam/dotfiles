@@ -99,6 +99,7 @@ alias stat="git status"
 alias commit="git add .; git commit -m $1"
 alias br="git branch"
 alias gca="git commit --amend"
+alias vim="nvim -u ~/repos/config/myvim/init.lua"
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'

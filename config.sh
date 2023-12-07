@@ -12,7 +12,6 @@ function setup() {
     # setup all symbolic links
     mkdir -p ~/.config
     mkdir -p ~/.cache/zsh
-    mkdir -p ~/.config/emacs
     touch ~/.cache/zsh/history
 
 	sudo ln -s ~/repos/config/nvim ~/.config/nvim
@@ -31,15 +30,11 @@ function setup() {
 	sudo ln -s ~/repos/config/.zshrc ~/.zshrc
 	sudo ln -s ~/repos/config/.zprofile ~/.zprofile
 
-    #  create symbolic links to the files only, so that It don't save the downloads (plugins)
-    sudo ln -s ~/repos/config/emacs/init.el ~/.config/emacs/init.el
-    sudo ln -s ~/repos/config/emacs/config.org ~/.config/emacs/config.org
-    sudo ln -s ~/repos/config/emacs/theme ~/.config/emacs/theme
 
     export PATH="/home/$USER/repos/config/bin:$PATH"
 
-    # init system calls
-    # docker
+    # add user to docker group
+    sudo usermod -aG docker $USER
     # qemukvm
     #
     sudo usermod -aG video $USER
@@ -73,7 +68,6 @@ function packageInstall() {
         "libpulse"
 
         "neovim"
-        "emacs"
         "clang"
         "npm"
         "make"
@@ -120,7 +114,8 @@ function packageInstall() {
         "fzf"
         "pyenv" # to manage different python versions
         "lazygit" # a minimal terminal based git client(ish) [maybe]
-        ""
+        # "sxhkd"     # to setup keybindings beyond default dwm keybindings
+        "hugo"
         # ""
         # ""
         # ""

@@ -1,28 +1,27 @@
 {
     "wallpaper": "/home/sahil/repos/config/wallpapers/second.jpg",
     "alpha": "100",
-
     "special": {
-        "background": "#000104",
-        "foreground": "#bfbfc0",
-        "cursor": "#bfbfc0"
+        "background": "#040715",
+        "foreground": "#bcb2ad",
+        "cursor": "#bcb2ad"
     },
     "colors": {
-        "color0": "#000104",
+        "color0": "#040715",
         "color1": "#1B4454",
         "color2": "#2C4A56",
         "color3": "#3A5A62",
         "color4": "#4D5055",
         "color5": "#666665",
         "color6": "#8B443F",
-        "color7": "#bfbfc0",
-        "color8": "#3f4042",
+        "color7": "#bcb2ad",
+        "color8": "#837c79",
         "color9": "#1B4454",
         "color10": "#2C4A56",
         "color11": "#3A5A62",
         "color12": "#4D5055",
         "color13": "#666665",
         "color14": "#8B443F",
-        "color15": "#bfbfc0"
+        "color15": "#bcb2ad"
     }
 }

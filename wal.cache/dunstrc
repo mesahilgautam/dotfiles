@@ -312,19 +312,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#090F17"
-    foreground = "#979893"
+    background = "#000104"
+    foreground = "#3f4042"
     timeout = 3
 
 [urgency_normal]
-    foreground = "#d9dad3"
-    background = "#447388"
+    foreground = "#bfbfc0"
+    background = "#4D5055"
     timeout = 3
 
 [urgency_critical]
-    background = "#956725" 
-    foreground = "#d9dad3"
-    frame_color = "#D4AA4A"
+    background = "#1B4454" 
+    foreground = "#bfbfc0"
+    frame_color = "#3A5A62"
     timeout = 3
 
 

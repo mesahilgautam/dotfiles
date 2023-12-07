@@ -51,6 +51,7 @@ return packer.startup(function(use)
     end,
   })
 
+  use({ "shortcuts/no-neck-pain.nvim", tag = "*" })
   -------------Sahil's plugins--------------
   use({
     "rcarriga/nvim-dap-ui",

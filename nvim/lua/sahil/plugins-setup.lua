@@ -32,6 +32,14 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
   -------------Sahil's plugins--------------
   -- use("NeogitOrg/neogit")
+  -- use({
+  --   "edluffy/hologram.nvim",
+  --   config = function()
+  --     require("hologram").setup()
+  --   end,
+  --
+  --   rocks = { "magick" },
+  -- })
   use("lukas-reineke/indent-blankline.nvim")
   use("ThePrimeagen/harpoon")
   use("akinsho/toggleterm.nvim")
@@ -44,6 +52,7 @@ return packer.startup(function(use)
   -- install without yarn or npm
   -- markdown preview
   -- it wasn't working but a reinstall fixed the problem
+  -- use("3rd/image.nvim")
   use({
     "iamcco/markdown-preview.nvim",
     run = function()

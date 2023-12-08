@@ -95,9 +95,9 @@ return packer.startup(function(use)
   })
 
   -- neorg
-  -- use({
-  --   "jghauser/follow-md-links.nvim",
-  -- })
+  use({
+    "jghauser/follow-md-links.nvim",
+  })
   -- use({
   --   "nvim-neorg/neorg",
   --   config = function()

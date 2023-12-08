@@ -32,7 +32,7 @@ local keymap = vim.keymap -- for conciseness
 --------------------------------- The Name is The Primeagen ------------------
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "<tab>", "za")
+-- vim.keymap.set("n", "<tab>", "za")
 
 keymap.set("n", "<leader>y", '"+y')
 keymap.set("v", "<leader>y", '"+y')
@@ -96,8 +96,8 @@ keymap.set("n", "<leader>nh", ":nohlsearch<CR>")
 keymap.set("n", "<leader>s", ":source %<CR>")
 keymap.set("n", "<leader>q", ":q<CR>")
 keymap.set("n", "<leader>w", ":w!<CR>")
-keymap.set("n", "<c-\\>", ":ToggleTerm<CR>")
--- delete single character without copying into register
+-- USING CHATGPT :) :)
+keymap.set("n", "z", ":ToggleTerm<CR>")
 keymap.set("n", "x", '"_x')
 
 -- increment/decrement numbers

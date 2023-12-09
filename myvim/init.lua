@@ -1,3 +1,15 @@
+--
+-- 1.   If I could run git diff on the current buffer, an find what changes did I do, or
+--      compare it to certain commit, like head, or origin/master, would be cool
+
+--
+-- 2.   Image support for markdown files, other than the one, where using relative links, one
+--      can go back and forth in the linked files :).
+
+
+
+
+
 -- Options
 
 vim.opt.relativenumber = true
@@ -6,8 +18,21 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+vim.opt.splitright = true -- split vertical window to the right
+vim.opt.splitbelow = true -- split horizontal window to the bottom
+vim.opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+vim.opt.ruler = false
+vim.opt.cmdheight = 0
+vim.opt.background = "dark"
+vim.opt.wrap = false -- disable line wrapping
 
+-- tabs & indentation
+vim.opt.tabstop = 4 -- 2 spaces for tabs (prettier default)
+vim.opt.shiftwidth = 4 -- 2 spaces for indent width
+vim.opt.expandtab = true -- expand tab to spaces
+vim.opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.syntax = "on"
 
 -- Keymaps
 
@@ -71,16 +96,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-	disabled_plugins = {
-		"nvim-treesitter",
-	},
-
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-
+	{ 
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000 
+    },
 	{
 		'nvim-telescope/telescope.nvim', tag = '0.1.5',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
+
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
@@ -92,22 +117,30 @@ require("lazy").setup({
 		--			require("nvim-tree").setup {}
 		--		end,
 	},
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-	{"christoomey/vim-tmux-navigator"},
-	{"ThePrimeagen/harpoon",
+	{
+        "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} 
+    },
+	{
+        "christoomey/vim-tmux-navigator"
+    },
+	{
+        "ThePrimeagen/harpoon",
 		dependencies = {"nvim-lua/plenary.nvim"},
-
 	},
 	{
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
 		opts = {} -- this is equalent to setup({}) function
 	},
-	{"norcalli/nvim-colorizer.lua"},
-
-	{'akinsho/toggleterm.nvim', version = "*", config = true},
-	{'tpope/vim-commentary'},
-
+	{
+        "norcalli/nvim-colorizer.lua"
+    },
+	{
+        'akinsho/toggleterm.nvim', version = "*", config = true
+    },
+	{
+        'tpope/vim-commentary'
+    },
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -117,41 +150,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		config = function () 
-			local configs = require("nvim-treesitter.configs")
-
-			configs.setup({
-				-- enable syntax highlighting
-				highlight = {
-					enable = true,
-				},
-				-- enable indentation
-				indent = { enable = false },
-				-- enable autotagging (w/ nvim-ts-autotag plugin)
-				autotag = { enable = true },
-				-- ensure these language parsers are installed
-				ensure_installed = {
-					"json",
-					"javascript",
-					"typescript",
-					"tsx",
-					"yaml",
-					"html",
-					"css",
-					"markdown",
-					"markdown_inline",
-					"svelte",
-					"graphql",
-					"bash",
-					"lua",
-					"vim",
-					"dockerfile",
-					"gitignore",
-				},
-				-- auto install above language parsers
-				auto_install = true,
-			})
-		end
+        config = true,
 	},
 })
 
@@ -307,6 +306,8 @@ require("toggleterm").setup({
 	},
 })
 
+-- this part makes it possible to switch between normal and insert modes in the terminal
+-- Why and how,I don't know, but will explore it in future.
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
@@ -316,5 +317,39 @@ function _G.set_terminal_keymaps()
 	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
 end
-
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()") -- all thanks to neovim-from-scratch :)
+
+-- Treesitter-nvim configuration
+require("nvim-treesitter.configs").setup({
+    -- enable syntax highlighting
+    highlight = {
+        enable = true,
+    },
+    -- enable indentation
+    indent = { enable = true },
+    -- enable autotagging (w/ nvim-ts-autotag plugin)
+    autotag = { enable = true },
+    highlight = { enable = true },
+    -- ensure these language parsers are installed
+    ensure_installed = {
+        "json",
+        "javascript",
+        "typescript",
+        "tsx",
+        "yaml",
+        "html",
+        "css",
+        "markdown",
+        "markdown_inline",
+        "svelte",
+        "graphql",
+        "bash",
+        "lua",
+        "vim",
+        "dockerfile",
+        "gitignore",
+    },
+    -- auto install above language parsers
+    auto_install = false,
+})
+

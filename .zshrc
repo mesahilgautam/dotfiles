@@ -99,7 +99,7 @@ alias stat="git status"
 alias commit="git add .; git commit -m $1"
 alias br="git branch"
 alias gca="git commit --amend"
-alias vim="nvim -u ~/repos/config/myvim/init.lua"
+alias vim="nvim -u ~/repos/config/myvim/init.lua ~/repos/config/myvim/init.lua"
 alias wiki="nvim ~/repos/wiki/README.md"
 alias dif="git diff HEAD~ HEAD | delta"
 

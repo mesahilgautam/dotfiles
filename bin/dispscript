@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# status=$(xrandr -q | grep "^DP-1 connected")
+#
+# wallpaper="/home/$USER/repos/config/wallpapers/second.jpg"
+#
+# if [ -z $status ]
+# then
+#     # single display (set wallpaper and enable display)
+#     xwallpaper --zoom $wallpaper
+#     xrandr --output eDP-1 --primary --auto
+# else
+#     # if multiple displays are connected, then only use 
+#     # the external display
+#     xrandr --output eDP-1 --off
+#     xrandr --output DP-1 --auto --left-of eDP-1
+#     xwallpaper --output DP-1 --zoom $wallpaper
+# fi
+
+
+
+#----------------------------Currently using only one-----------------------------------
+
 status=$(xrandr -q | grep "^DP-1 connected")
 
 wallpaper="/home/$USER/repos/config/wallpapers/second.jpg"
@@ -8,8 +29,8 @@ if [ -z $status ]
 then
     # single display
     xwallpaper --zoom $wallpaper
+    xrandr --output eDP-1 --auto
 else
-
     result=$(printf "left\nright\nnone" | dmenu -p "Orientation: " -l 4 -vi)
 
     xwallpaper --output eDP-1 --zoom $wallpaper

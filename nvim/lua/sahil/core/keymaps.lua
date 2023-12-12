@@ -38,6 +38,9 @@ keymap.set("n", "<leader>y", '"+y')
 keymap.set("v", "<leader>y", '"+y')
 keymap.set("n", "<leader>Y", '"+Y')
 
+-- vim-maximizer
+keymap.set("n", "<leader>c", ":MaximizerToggle!<CR>")
+
 -- Execute different file types on the vim shell
 function G_print_current_file_path()
   local file_extension = vim.fn.expand("%:e")
@@ -58,6 +61,10 @@ function G_print_current_file_path()
     vim.cmd("!lua %")
   elseif file_extension == "sh" then
     vim.cmd("!sh %")
+  elseif file_extension == "yaml" then
+    vim.cmd("!yaml-parser %")
+  elseif file_extension == "yml" then
+    vim.cmd("!yaml-parser %")
   else
     print("Unsupported file type")
   end
@@ -119,8 +126,7 @@ keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 -- Plugin Keybinds
 ----------------------
 
--- vim-maximizer
-keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
+-- keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer

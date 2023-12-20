@@ -39,7 +39,7 @@ keymap.set("v", "<leader>y", '"+y')
 keymap.set("n", "<leader>Y", '"+Y')
 
 -- vim-maximizer
-keymap.set("n", "<leader>c", ":MaximizerToggle!<CR>")
+keymap.set("n", "q", ":MaximizerToggle!<CR>")
 
 -- Execute different file types on the vim shell
 function G_print_current_file_path()
@@ -59,6 +59,8 @@ function G_print_current_file_path()
     vim.cmd("!python %")
   elseif file_extension == "lua" then
     vim.cmd("!lua %")
+  elseif file_extension == "go" then
+    vim.cmd("!go run %")
   elseif file_extension == "sh" then
     vim.cmd("!sh %")
   elseif file_extension == "yaml" then

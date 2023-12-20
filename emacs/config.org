@@ -1,0 +1,492 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Sahil Gautam
+
+* Emacs
+** Evil Mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :ensure t)
+  (evil-mode)
+
+  ;; enable redo
+  (evil-set-undo-system 'undo-redo)
+#+END_SRC
+
+** Minimal UI
+
+#+BEGIN_SRC emacs-lisp
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (setq scroll-conservatively 100)
+  (setq ring-bell-function 'ignore)
+  (setq-default mode-line-format nil)
+  (fringe-mode 0)
+  (setq inhibit-startup-screen t)
+#+END_SRC
+
+** Presevre Indentation (Org-Mode)
+
+#+begin_src emacs-lisp
+  (setq org-src-tab-acts-natively nil)
+  (setq evil-want-C-i-jump t)
+  (setq org-src-preserve-indentation t)
+  (setq-default indent-tabs-mode nil)
+#+end_src
+
+** Yasnippet
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy-yasnippet
+    :ensure t)
+  (yas-global-mode)
+  (define-key yas-minor-mode-map (kbd "SPC") yas-maybe-expand)
+#+END_SRC
+
+** Completion Framework (IVY)
+
+#+begin_src emacs-lisp
+  (use-package ivy
+    :ensure t
+    :init
+      (ivy-mode))
+#+end_src
+
+** Visual Fill Column
+
+#+begin_src emacs-lisp
+  (use-package visual-fill-column
+  :ensure t
+  :config
+  (setq visual-fill-column-width 110
+	visual-fill-column-center-text t)
+  :init
+  (visual-fill-column-mode t))
+
+  (defun add-fill-column ()
+  (setq visual-fill-column-width 120)
+  (setq visual-fill-column-center-text t)
+  (visual-fill-column-mode t))
+
+  (add-hook 'org-mode-hook 'add-fill-column)
+#+end_src
+
+** Keybindings 
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-leader
+    :ensure t
+    :config
+    (global-evil-leader-mode)
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key
+      ;; org-roam keybindings
+      "oi" 'org-roam-node-insert
+      "of" 'org-roam-node-find
+      "w" 'save-buffer
+      "W" 'evil-write-all
+      "mp" 'dashboard-open
+      "." 'find-file
+      "q" 'evil-quit
+      "r" 'org-babel-remove-result-one-or-many
+      "x" 'org-babel-execute-src-block
+      "sh" 'evil-window-split
+      "sv" 'evil-window-vsplit))
+
+
+  (add-hook 'org-mode-hook
+    (lambda ()
+      (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)))
+
+  (setq-default tab-width 2)
+  (add-hook 'evil-insert-state-entry-hook
+    (lambda ()
+      (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)))
+
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+#+END_SRC
+
+** Transparency Settings
+
+#+begin_src emacs-lisp
+  (defvar efs/frame-transparency '(85 . 85))
+  (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+  (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+  (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+
+#+end_src
+
+** Autopair
+
+
+#+BEGIN_SRC emacs-lisp
+  (electric-pair-mode)
+#+END_SRC
+
+** Theme
+
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-themes
+    :ensure t
+    :config
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+            doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    (load-theme 'doom-palenight t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Enable custom neotree theme (all-the-icons must be installed!)
+    (doom-themes-neotree-config)
+    ;; or for treemacs users
+    (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+    (doom-themes-treemacs-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
+#+END_SRC
+
+** ModeLine
+
+#+BEGIN_SRC emacs-lisp
+  
+  ;; You must run (all-the-icons-install-fonts) one time after
+  ;; installing this package!
+  (use-package doom-modeline
+    :ensure t)
+
+  (setq doom-modeline-height 15
+        doom-modeline-bar-width 6
+        doom-modeline-lsp t
+        doom-modeline-github nil
+        doom-modeline-mu4e nil
+        doom-modeline-irc t
+        doom-modeline-minor-modes t
+        doom-modeline-persp-name nil
+        doom-modeline-buffer-file-name-style 'truncate-except-project
+        doom-modeline-major-mode-icon nil)
+  ;; (custom-set-faces '(mode-line ((t (:height 0.85))))
+  ;;                   '(mode-line-inactive ((t (:height 0.85))))))
+
+  (add-hook 'after-init-hook 'doom-modeline-mode)
+#+END_SRC
+
+#+RESULTS:
+
+** Hooks
+
+#+BEGIN_SRC emacs-lisp
+  (column-number-mode)
+  ;; Enable line numbers for some modes
+  (dolist (mode '(text-mode-hook
+                prog-mode-hook
+                conf-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 1))))
+
+  ;; Override some modes which derive from the above
+  (dolist (mode '(org-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+  ;; Set variable pitch font in Org mode
+  (add-hook 'org-mode-hook
+          (lambda ()
+            (variable-pitch-mode 1)
+            ;; (setq line-spacing 0.2)
+            ))
+#+END_SRC
+
+** Fonts
+
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil
+                      :font "JetBrainsMono Nerd Font"
+                      :weight 'light
+                      :height 150)
+
+  ;; Set the fixed pitch face
+  (set-face-attribute 'fixed-pitch nil
+                      :font "JetBrainsMono Nerd Font"
+                      :weight 'light
+                      :height 137)
+
+  ;; Set the variable pitch face
+  (set-face-attribute 'variable-pitch nil
+                      ;; :font "Cantarell"
+                      :font "Iosevka Aile"
+                      :height 170
+                      :weight 'light)
+
+  (set-face-attribute 'org-document-title nil :font "Iosevka Aile" :weight 'bold :height 1.3)
+  (dolist (face '((org-level-1 . 1.1)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'medium :height (cdr face)))
+
+  ;; Make sure org-indent face is available
+  (require 'org-indent)
+
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :background "#232635" :inherit '(shadow fixed-pitch) :height 140)
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+
+  ;; Get rid of the background on column views
+  (set-face-attribute 'org-column nil :background nil)
+  (set-face-attribute 'org-column-title nil :background nil)
+#+END_SRC
+
+** BookMarking
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+#+RESULTS:
+* Org-Mode
+** Org-Roam
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-roam
+    :ensure t
+    :custom
+    (org-roam-directory (file-truename "~/repos/files/roamNotes"))
+    ;; :bind (("C-c n l" . org-roam-buffer-toggle)
+    ;;         ("C-c n f" . org-roam-node-find)
+    ;;         ("C-c n g" . org-roam-graph)
+    ;;         ("C-c n i" . org-roam-node-insert)
+    ;;         ("C-c n c" . org-roam-capture)
+            ;; Dailies
+            ;; ("C-c n j" . org-roam-dailies-capture-today))
+    :config
+    ;; If you're using a vertical completion framework, you might want a more informative completion interface
+    (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+    (org-roam-db-autosync-mode)
+    ;; If using org-roam-protocol
+    (require 'org-roam-protocol))
+#+END_SRC
+
+** Org Babel and autoindent
+
+#+begin_src emacs-lisp
+  (setq org-confirm-babel-evaluate nil)
+  (setq org-adapt-indentation nil)  ;; autoindent under headings
+  (setq make-backup-files nil)    ;; autosave == nil
+#+end_src
+
+** Hide Sourceblock Markers
+
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook
+	    '(lambda ()
+	       (set-face-attribute 'org-block-begin-line nil :background 'unspecified)
+	       (set-face-attribute 'org-block-end-line nil :background 'unspecified)
+	       (set-face-attribute 'org-block-begin-line nil
+				   :foreground (face-background 'org-block-begin-line nil 'default))
+	       (set-face-attribute 'org-block-end-line nil
+				   :foreground (face-background 'org-block-end-line nil 'default))))
+#+end_src
+
+** Org Bullets and Ellipsis
+
+
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :init
+      (setq org-bullets-face-name "Iosevka Aile")
+      (setq org-bullets-bullet-list
+            '("◉"  "✸" "◇" "●" "►" "✿" ))
+    :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+
+** Org Appear
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-appear
+    :ensure t)
+  (add-hook 'org-mode-hook 'org-appear-mode)
+  (setq org-hide-emphasis-markers t)
+#+END_SRC
+
+* Developement
+** Evil Commentry (comment with gc)
+
+#+begin_src emacs-lisp
+  (use-package evil-commentary
+    :ensure t
+    :config
+      (evil-commentary-mode))
+  (define-key evil-visual-state-map "gc" 'evil-commentary)
+#+end_src
+
+** YAML Mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t)
+#+END_SRC
+
+** Rainbow Mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :ensure t)
+  (add-hook 'org-mode-hook #'rainbow-mode)
+#+END_SRC
+
+** Vterm
+
+#+BEGIN_SRC emacs-lisp
+  (use-package vterm
+    :ensure t)
+
+  ;; use fixed pitch font for vterm
+  (add-hook 'vterm-mode-hook
+          (lambda ()
+              (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
+                  (buffer-face-mode t)))
+#+END_SRC
+
+** Yaml Mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t)
+#+END_SRC
+
+** LSP Mode
+*** LSP Mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :hook
+      (c-mode . lsp-deferred)
+      (c++-mode . lsp-deferred)
+      (go-mode . lsp-deferred)
+      (python-mode . lsp-deferred)
+    :commands (lsp lsp-deferred))
+#+END_SRC
+
+*** Python LS
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-python-ms
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-python-ms)
+                         (lsp)))
+  :init
+  (setq lsp-python-ms-executable (executable-find "python-language-server")))
+
+#+END_SRC
+
+*** Ansible LS
+
+#+BEGIN_SRC emacs-lisp
+  ;; installed ansible-language-server using `yay -S ansible-language-server`
+  ;; same for yaml-language-server
+  (setq lsp-ansible-add-on t)
+#+END_SRC
+
+** TreeSitter
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+** Corfu (PopUp Completion)
+
+#+BEGIN_SRC emacs-lisp
+(use-package corfu
+  :ensure t
+  ;; Optional customizations
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  (corfu-preview-current nil)    ;; Disable current candidate preview
+  (corfu-preselect 'prompt)      ;; Preselect the prompt
+  (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  (corfu-scroll-margin 5)        ;; Use scroll margin
+
+  ;; Enable Corfu only for certain modes.
+  :hook ((prog-mode . corfu-mode)
+         (shell-mode . corfu-mode)
+         (org-mode . corfu-mode)
+         (eshell-mode . corfu-mode))
+
+  ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
+  ;; be used globally (M-/).  See also the customization variable
+  ;; `global-corfu-modes' to exclude certain modes.
+  :init
+  (global-corfu-mode))
+
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold 3)
+
+  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+  ;; (setq read-extended-command-predicate
+  ;;       #'command-completion-default-include-p)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (setq tab-always-indent 'complete))
+
+(setq-local corfu-auto        t
+            corfu-auto-delay  0 ;; TOO SMALL - NOT RECOMMENDED
+            corfu-auto-prefix 0 ;; TOO SMALL - NOT RECOMMENDED
+            completion-styles '(basic))
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+;; TAB-only configuration
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-auto t)               ;; Enable auto completion
+  (corfu-preselect 'directory) ;; Select the first candidate, except for directories
+
+  ;; Free the RET key for less intrusive behavior.
+  :bind
+  (:map corfu-map
+        ;; Option 1: Unbind RET completely
+        ("RET" . nil)
+        ("TAB" . 'corfu-insert))
+        ;; Option 2: Use RET only in shell modes
+
+  :init
+  (global-corfu-mode))
+
+(defun corfu-insert-shell-filter (&optional _)
+  "Insert completion candidate and send when inside comint/eshell."
+  (when (or (derived-mode-p 'eshell-mode) (derived-mode-p 'comint-mode))
+    (lambda ()
+      (interactive)
+      (corfu-insert)
+      ;; `corfu-send-shell' was defined above
+      (corfu-send-shell))))
+#+END_SRC
+
+

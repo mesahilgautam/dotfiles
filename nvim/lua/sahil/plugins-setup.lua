@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use("akinsho/toggleterm.nvim")
   use("rebelot/kanagawa.nvim")
   use("catppuccin/nvim")
-  -- use({ "ellisonleao/gruvbox.nvim" })
+  use({ "ellisonleao/gruvbox.nvim" })
   use("norcalli/nvim-colorizer.lua")
 
   use("Vimjas/vim-python-pep8-indent")
@@ -208,6 +208,8 @@ return packer.startup(function(use)
 
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+
+  use("3rd/image.nvim")
 
   if packer_bootstrap then
     require("packer").sync()

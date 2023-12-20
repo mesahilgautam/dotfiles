@@ -57,7 +57,7 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 opt.pumheight = 12
-opt.conceallevel = 3
+opt.conceallevel = 1
 opt.guicursor = "i:block"
 
 opt.hlsearch = true

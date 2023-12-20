@@ -114,6 +114,7 @@ static char dmenumon[2] =
 // col_gray4, NULL };
 static const char *dmenucmd[] = {"dmenu_run", NULL};
 static const char *termcmd[] = {"st", NULL};
+// static const char *termcmd[] = {"kitty", NULL};
 static const char *getircurls[] = {"getircurls", NULL};
 
 static const char scratchpadname[] = "scratchpad";

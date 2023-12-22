@@ -103,7 +103,7 @@ alias gca="git commit --amend"
 # alias vim="nvim -u ~/repos/config/myvim/init.lua ~/repos/config/myvim/init.lua"
 alias wiki="nvim ~/repos/wikipedia/docs/"
 alias dif="git diff HEAD~ HEAD | delta"
-alias vim='docker run -it --rm -v /home/sahil/neovim/nvim:/home/sahil/.config/nvim neovim'
+alias vim='docker run -it --rm -v /home/sahil/neovim/nvim:/home/sahil/.config/nvim vim:latest'
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'

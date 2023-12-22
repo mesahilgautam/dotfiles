@@ -1,4 +1,4 @@
 #!/bin/bash
 status=""
-[ -n "$(pgrep -f yt-dlp)" ] && status="  " || status = "" 1>/dev/null 2>&1
+[ -n "$(pgrep -f yt-dlp)" ] && status=" 📥 " || status = "" 1>/dev/null 2>&1
 echo " ($status) "

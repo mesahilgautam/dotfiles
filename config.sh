@@ -11,10 +11,11 @@ function setup() {
 
     # setup all symbolic links
     mkdir -p ~/.config
+    mkdir -p ~/.config/nvim
     mkdir -p ~/.cache/zsh
     touch ~/.cache/zsh/history
 
-	sudo ln -s ~/repos/config/nvim ~/.config/nvim
+	sudo ln -s ~/repos/config/init.lua ~/.config/nvim/init.lua
 	sudo ln -s ~/repos/config/dunst ~/.config/dunst
 	sudo ln -s ~/repos/config/gtk-3.0 ~/.config/gtk-3.0
 	sudo ln -s ~/repos/config/mpv ~/.config/mpv
@@ -110,13 +111,14 @@ function packageInstall() {
         "lua"
         "gcc"
         "g++"
+        "go"
         "make"
         "fzf"
         "pyenv" # to manage different python versions
         "lazygit" # a minimal terminal based git client(ish) [maybe]
+        "mkdocs"
         # "sxhkd"     # to setup keybindings beyond default dwm keybindings
-        "hugo"
-        # ""
+        # "hugo"
         # ""
         # ""
         # ""

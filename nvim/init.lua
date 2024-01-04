@@ -16,7 +16,7 @@ opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 opt.cursorline = false -- highlight the current cursor line
 opt.termguicolors = true
-opt.signcolumn = "no" -- show sign column so that text doesn't shift
+opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical window to the right
@@ -59,10 +59,12 @@ keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 keymap.set("n", "q", ":MaximizerToggle!<CR>") -- mapping to restart lsp if necessary
+keymap.set("n", "<leader>no", ":Neorg workspace notes<CR>") -- mapping to restart lsp if necessary
+keymap.set("n", "<leader>oe", ":lua vim.diagnostic.open_float()<CR>") -- mapping to restart lsp if necessary
 
 function today()
 	-- Check if tmp file exists in the notes directory
-	local notes_dir = "/home/sahil/notes"
+	local notes_dir = "/home/sahil/repos/files/journal"
 	local tmp_file = notes_dir .. "/tmp"
 
 	local test = io.open(tmp_file, "r")
@@ -165,17 +167,29 @@ require("lazy").setup({
 					comments = { "italic" }, -- Change the style of comments
 					conditionals = {},
 					loops = {},
-					functions = { "bold" },
-					keywords = { "bold" },
+					functions = {},
+					keywords = {},
 					strings = {},
-					variables = { "bold" },
+					variables = {},
 					numbers = {},
 					booleans = {},
 					properties = {},
 					types = {},
 					operators = {},
 				},
-				color_overrides = {},
+				color_overrides = {
+					all = {
+						-- text = "#ffffff",
+					},
+					mocha = {
+						base = "#0A0E12",
+						mantle = "#12161B",
+						crust = "#12161B",
+					},
+					frappe = {},
+					macchiato = {},
+					latte = {},
+				},
 				custom_highlights = {},
 				integrations = {
 					cmp = true,
@@ -269,12 +283,9 @@ require("lazy").setup({
 	},
 
 	{
-		"altermo/ultimate-autopair.nvim",
-		event = { "InsertEnter", "CmdlineEnter" },
-		branch = "v0.6", --recomended as each new version will have breaking changes
-		opts = {
-			--Config goes here
-		},
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {}, -- this is equalent to setup({}) function
 	},
 
 	{
@@ -365,7 +376,7 @@ require("lazy").setup({
 		version = "*",
 		config = function()
 			require("toggleterm").setup({
-				direction = "float",
+				direction = "horizontal",
 				float_opts = {
 					border = "curved",
 				},
@@ -479,6 +490,7 @@ require("lazy").setup({
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local servers = {
 				"clangd",
+				"marksman",
 				"lua_ls",
 				"html",
 				"cssls",
@@ -526,7 +538,7 @@ require("lazy").setup({
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "bashls" },
+				ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "bashls", "cssls", "emmet_ls" },
 			})
 			require("mason-null-ls").setup({
 				ensure_installed = {
@@ -614,6 +626,7 @@ require("lazy").setup({
 
 	{
 		"lewis6991/gitsigns.nvim",
+		lazy = false,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("gitsigns").setup({
@@ -659,11 +672,10 @@ require("lazy").setup({
 				},
 			})
 		end,
+		keys = {
+			{ mode = "n", "<leader>gt", ":Gitsigns toggle_deleted<CR>", desc = "" },
+		},
 	},
-
-	-- {
-	-- 	"jghauser/follow-md-links.nvim",
-	-- },
 
 	{
 		"iamcco/markdown-preview.nvim",
@@ -680,58 +692,32 @@ require("lazy").setup({
 			require("colorizer").setup()
 		end,
 	},
+
+	{
+		"jghauser/follow-md-links.nvim",
+	},
+
 	{
 		"nvim-neorg/neorg",
+		build = ":Neorg sync-parsers",
+		-- tag = "*",
+		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("neorg").setup({
 				load = {
 					["core.defaults"] = {}, -- Loads default behaviour
-					["core.concealer"] = {
-						config = {
-							icons = {
-								code_block = {
-									conceal = true,
-									content_only = true,
-								},
-							},
-						},
-					}, -- Adds pretty icons to your documents
+					["core.concealer"] = {}, -- Adds pretty icons to your documents
 					["core.dirman"] = { -- Manages Neorg workspaces
 						config = {
 							workspaces = {
-								notes = "/home/sahil/repos/files/notes",
-								-- journal = "/home/sahil/repos/files/journal",
+								notes = "~/repos/zero",
 							},
 						},
 					},
 				},
-
-				["external.jupyter"] = {},
-			})
-		end,
-		run = ":Neorg sync-parsers",
-		dependencies = { "nvim-lua/plenary.nvim" },
-
-		keys = {
-			{ mode = "n", "<leader>no", ":Neorg workspace notes<CR>", desc = "Open Neorg Notes" },
-		},
-	},
-
-	{
-		"jakewvincent/mkdnflow.nvim",
-		config = function()
-			require("mkdnflow").setup({
-				links = {
-					transform_explicit = function(text)
-						-- Make lowercase, remove spaces, and reverse the string
-						return string.lower(text:gsub(" ", ""))
-					end,
-				},
 			})
 		end,
 	},
-
-	{},
 })
 
 local cpp_formating_group = vim.api.nvim_create_augroup("CppFormatingWithClangd", { clear = true })

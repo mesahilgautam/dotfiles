@@ -35,5 +35,6 @@ do
             $batteryIcon
     fi
 
+    timer
     sleep $(( $time / 1000 ))
 done

@@ -1,0 +1,7 @@
+# #!/bin/bash
+#
+# timenow="$(date '+%R')"
+#
+# case "$timenow" in
+#     "16:00") notify-send  -i "/home/sahil/repos/config/icons/alaram642.png" "$timenow"
+# esac

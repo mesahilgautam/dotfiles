@@ -129,8 +129,6 @@ static const char *bravecmd[] = {"brave", NULL};
 static const char *firefoxcmd[] = {"firefox", NULL};
 
 static const char *flameshotcmd[] = {"flameshot", "gui", NULL};
-static const char *emacsarchive[] = {"emacs",
-                                     "/home/sahil/.config/repos/archive", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
@@ -194,7 +192,6 @@ static const Key keys[] = {
     {MODKEY, XK_b, spawn, {.v = bookmark}},
     {MODKEY, XK_g, spawn, {.v = getbookmark}},
     {MODKEY, XK_y, spawn, {.v = getircurls}},
-    {MODKEY, XK_z, spawn, {.v = emacsarchive}},
 
     {0, XF86XK_MonBrightnessUp, spawn,
      SHCMD("light -A 5; kill -38 $(pidof dwmblocks)")},

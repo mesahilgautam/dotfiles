@@ -72,11 +72,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 
 
-
-
-
-
-
 alias ls='ls --color=auto'
 alias ll='ls -al --color=auto'
 alias grep='grep --color=auto'
@@ -84,7 +79,7 @@ alias grep='grep --color=auto'
 # keyboard settings
 xset r rate 300 50
 setxkbmap -option caps:swapescape
-setxkbmap -option ctrl:swap_ralt_rctl  
+setxkbmap -option ctrl:swap_ralt_rctl
 
 alias cr="cd ~/repos/"
 alias msu="sudo make clean install"
@@ -124,3 +119,6 @@ PROMPT='%F{blue}[%n%f%F{red}@%f%F{blue}%m]%f %F{green}%f%F{blue}%c%f %F{red}${vc
 
 export GPG_AGENT_INFO="$(gpgconf --list-dirs agent-socket)/S.gpg-agent:0:1"
 
+# export SAL_USE_VCLPLUGIN=gen
+# export UNO_PATH=/opt/libreoffice7.2/program
+# export URE_BOOTSTRAP=vdn.sun.star.pathname:/opt/libreoffice7.1/program/fundamentalrc

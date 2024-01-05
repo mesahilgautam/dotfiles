@@ -1,21 +1,21 @@
-set $wallpaper /home/sahil/repos/config/wallpapers/second.jpg
+set $wallpaper /home/sahil/repos/config/wallpapers/road.jpg
 
-set $background #000104
+set $background #020203
 set $foreground #bfbfc0
 
-set $color0 #000104
-set $color1 #1B4454
-set $color2 #2C4A56
-set $color3 #3A5A62
-set $color4 #4D5055
-set $color5 #666665
-set $color6 #8B443F
+set $color0 #020203
+set $color1 #505567
+set $color2 #37638A
+set $color3 #546B90
+set $color4 #6A7596
+set $color5 #8A778D
+set $color6 #7187A9
 set $color7 #bfbfc0
-set $color8 #3f4042
-set $color9 #1B4454
-set $color10 #2C4A56
-set $color11 #3A5A62
-set $color12 #4D5055
-set $color13 #666665
-set $color14 #8B443F
+set $color8 #414142
+set $color9 #505567
+set $color10 #37638A
+set $color11 #546B90
+set $color12 #6A7596
+set $color13 #8A778D
+set $color14 #7187A9
 set $color15 #bfbfc0

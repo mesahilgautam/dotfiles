@@ -1,7 +1,7 @@
 
 [[ -f ~/.zshrc ]] && . ~/.zshrc
 
-export PATH="/home/sahil/repos/config/bin:$PATH"
+export PATH="/home/sahil/repos/config/bin:/opt/docker-desktop/bin:$PATH"
 export EDITOR=nvim
 export GTK_THEME=Adwaita:dark
 export GPG_AGENT_INFO="$(gpgconf --list-dirs agent-socket)/S.gpg-agent:0:1"

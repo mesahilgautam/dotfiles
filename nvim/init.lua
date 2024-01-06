@@ -759,3 +759,14 @@ vim.cmd([[
     autocmd FileType lua setlocal tabstop=2
   augroup END
 ]])
+
+-- Set autoread
+vim.cmd("set autoread")
+
+-- Define an autocommand for CursorHold and CursorHoldI events
+vim.cmd([[
+  augroup AutoRead
+    autocmd!
+    autocmd CursorHold,CursorHoldI * checktime
+  augroup END
+]])

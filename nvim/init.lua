@@ -27,6 +27,9 @@ opt.guicursor = "i:block"
 opt.hlsearch = true
 opt.incsearch = true
 opt.scrolloff = 8
+vim.g.noswapfile = true
+vim.g.nobackup = true
+vim.g.nowritebackup = true
 -- vim.g.markdown_folding = 1
 opt.guicursor =
 	"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
@@ -59,12 +62,11 @@ keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 keymap.set("n", "q", ":MaximizerToggle!<CR>") -- mapping to restart lsp if necessary
-keymap.set("n", "<leader>no", ":Neorg workspace notes<CR>") -- mapping to restart lsp if necessary
 keymap.set("n", "<leader>oe", ":lua vim.diagnostic.open_float()<CR>") -- mapping to restart lsp if necessary
 
 function today()
 	-- Check if tmp file exists in the notes directory
-	local notes_dir = "/home/sahil/repos/files/journal"
+	local notes_dir = "/home/sahil/repos/files/notes"
 	local tmp_file = notes_dir .. "/tmp"
 
 	local test = io.open(tmp_file, "r")
@@ -72,7 +74,7 @@ function today()
 		return
 	end
 
-	local date_today = os.date("%d.%m.%Y")
+	local date_today = os.date("%Y.%m.%d")
 	local entry_name = notes_dir .. "/" .. date_today .. ".md"
 
 	test = io.open(entry_name, "r")
@@ -138,7 +140,9 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
+-- Example for configuring Neovim to load user-installed installed Lua rocks: (image.nvim)
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 -- PLUGIN SETUP
 require("lazy").setup({
 	{
@@ -696,28 +700,40 @@ require("lazy").setup({
 	{
 		"jghauser/follow-md-links.nvim",
 	},
-
-	{
-		"nvim-neorg/neorg",
-		build = ":Neorg sync-parsers",
-		-- tag = "*",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("neorg").setup({
-				load = {
-					["core.defaults"] = {}, -- Loads default behaviour
-					["core.concealer"] = {}, -- Adds pretty icons to your documents
-					["core.dirman"] = { -- Manages Neorg workspaces
-						config = {
-							workspaces = {
-								notes = "~/repos/zero",
-							},
-						},
-					},
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"3rd/image.nvim",
+	-- 	config = function()
+	-- 		-- default config
+	-- 		require("image").setup({
+	-- 			backend = "kitty",
+	-- 			integrations = {
+	-- 				markdown = {
+	-- 					enabled = true,
+	-- 					clear_in_insert_mode = false,
+	-- 					download_remote_images = true,
+	-- 					only_render_image_at_cursor = false,
+	-- 					filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+	-- 				},
+	-- 				neorg = {
+	-- 					enabled = true,
+	-- 					clear_in_insert_mode = false,
+	-- 					download_remote_images = true,
+	-- 					only_render_image_at_cursor = false,
+	-- 					filetypes = { "norg" },
+	-- 				},
+	-- 			},
+	-- 			max_width = nil,
+	-- 			max_height = nil,
+	-- 			max_width_window_percentage = nil,
+	-- 			max_height_window_percentage = 50,
+	-- 			window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+	-- 			window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+	-- 			editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+	-- 			tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+	-- 			hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
+	-- 		})
+	-- 	end,
+	-- },
 })
 
 local cpp_formating_group = vim.api.nvim_create_augroup("CppFormatingWithClangd", { clear = true })
